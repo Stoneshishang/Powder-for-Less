@@ -1,0 +1,14 @@
+.resortList {
+  display: flex;
+  flex-direction: row;
+  margin: 10rem;
+}
+
+.resortList .rockies {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.resortSelection {
+  text-align: center;
+}
