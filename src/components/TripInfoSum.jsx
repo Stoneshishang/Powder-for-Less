@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { Context } from '../ContextState';
+import { Context } from "../ContextState";
 
 const TripInfoSum = () => {
-  const { airport, setAirport, selectedMW, setSelectedMW } = useContext(Context);
+  const { airport, setAirport, selectedMW, setSelectedMW } = useContext(
+    Context,
+  );
 
-  console.log('TripInfoSum selectedMW is: ', selectedMW);
-  console.log('TripInfoSum setSelectedMW is: ', setSelectedMW);
+  console.log("TripInfoSum selectedMW is: ", selectedMW);
+  console.log("TripInfoSum setSelectedMW is: ", setSelectedMW);
 
-  console.log('TripInfoSum airport is: ', airport);
+  console.log("TripInfoSum airport is: ", airport);
 
   return (
     <div>

@@ -1,29 +1,29 @@
-import React, { useState, useMemo } from 'react';
-import MultiSelect from 'react-multi-select-component';
-import './ResortSelection.css';
+import React, { useState, useMemo } from "react";
+import MultiSelect from "react-multi-select-component";
+import "./ResortSelection.css";
 // import styled from "styled-components";
 
-import { Context } from '../ContextState';
+import { Context } from "../ContextState";
 
 const ResortSelection = (props) => {
   const MidWest = [
-    { label: 'Boyne Mountain', value: 'boyne-mountain' },
-    { label: 'Boyne Highland', value: 'boyne-highland' },
+    { label: "Boyne Mountain", value: "boyne-mountain" },
+    { label: "Boyne Highland", value: "boyne-highland" },
   ];
 
   const Rockies = [
-    { label: 'Alta Snowbird, UT', value: 'alta-snowbird' },
-    { label: 'Arapahoe Basin Ski Area, CO', value: 'abasin' },
-    { label: 'Aspen Snowmass, CO', value: 'snowmass' },
-    { label: 'Big Sky Resort, MT', value: 'big-sky' },
-    { label: 'Brighton Resort, UT', value: 'brighton' },
-    { label: 'Jackson Hole, WY', value: 'jackson-hole' },
+    { label: "Alta Snowbird, UT", value: "alta-snowbird" },
+    { label: "Arapahoe Basin Ski Area, CO", value: "abasin" },
+    { label: "Aspen Snowmass, CO", value: "snowmass" },
+    { label: "Big Sky Resort, MT", value: "big-sky" },
+    { label: "Brighton Resort, UT", value: "brighton" },
+    { label: "Jackson Hole, WY", value: "jackson-hole" },
   ];
 
   const Sierra = [
-    { label: 'Squaw Valley, CA', value: 'Squaw' },
-    { label: 'Mammoth Mounatain, CA', value: 'Mammoth' },
-    { label: 'Alpine Meadows', value: 'Apline Meadows' },
+    { label: "Squaw Valley, CA", value: "Squaw" },
+    { label: "Mammoth Mounatain, CA", value: "Mammoth" },
+    { label: "Alpine Meadows", value: "Apline Meadows" },
   ];
 
   // const [selectedMW, setSelectedMW] = useState([]);
@@ -49,7 +49,7 @@ const ResortSelection = (props) => {
                 options={MidWest}
                 value={selectedMW}
                 onChange={setSelectedMW}
-                labelledBy={'Select'}
+                labelledBy={"Select"}
               />
             </div>
 
@@ -59,7 +59,7 @@ const ResortSelection = (props) => {
                 options={Rockies}
                 value={selectedRockies}
                 onChange={setSelectedRockies}
-                labelledBy={'Select'}
+                labelledBy={"Select"}
               />
             </div>
 
@@ -69,7 +69,7 @@ const ResortSelection = (props) => {
                 options={Sierra}
                 value={selectedSierra}
                 onChange={setSelectedSierra}
-                labelledBy={'Select'}
+                labelledBy={"Select"}
               />
             </div>
           </div>

@@ -1,14 +1,14 @@
-import React from 'react';
-import './AutoComplete.css';
-import { v4 as uuidv4 } from 'uuid';
-import { Context } from '../ContextState';
+import React from "react";
+import "./AutoComplete.css";
+import { v4 as uuidv4 } from "uuid";
+import { Context } from "../ContextState";
 
 export default class AutoComplete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       suggestions: [],
-      text: '',
+      text: "",
     };
   }
 
@@ -18,7 +18,7 @@ export default class AutoComplete extends React.Component {
     // console.log(`autocomplete value is ${value}`);
     let suggestions = [];
     if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, 'i');
+      const regex = new RegExp(`^${value}`, "i");
       suggestions = items.sort().filter((v) => regex.test(v));
     }
     this.setState(() => ({ suggestions, text: value }));
@@ -64,7 +64,7 @@ export default class AutoComplete extends React.Component {
             />
             {this.renderSuggestions()}
             {/* {console.log(`this.text is ${text}`)} */}
-            {console.log('AutoComplete text is: ', text)}
+            {console.log("AutoComplete text is: ", text)}
             <button onClick={() => setAirport(text)}>Submit Airport</button>
             <pre>{JSON.stringify(text)}</pre>
           </div>
