@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
-import { ResortSelectionContext } from "./ResortsSelection";
-import { AirportContext } from "./AutoComplete";
-// import { TripInfoContext } from "../TripInfoContext";
+import React, { useContext } from "react";
+
+import { Context } from "../ContextState";
 
 const TripInfoSum = () => {
-  const { selectedMW, setSelectedMW } = useContext(ResortSelectionContext);
-  const { airport, setAirport } = useContext(AirportContext);
+  const { airport, setAirport, selectedMW, setSelectedMW } = useContext(
+    Context,
+  );
 
   console.log("TripInfoSum selectedMW is: ", selectedMW);
   console.log("TripInfoSum setSelectedMW is: ", setSelectedMW);

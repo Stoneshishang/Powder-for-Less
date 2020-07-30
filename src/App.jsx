@@ -12,6 +12,7 @@ import airports from "./components/airports";
 import TripInfoDetail from "./components/TripInfoDetail";
 import TripInfoSum from "./components/TripInfoSum";
 // import {UserContext} from './UserContext'
+import { Provider } from "./ContextState";
 
 // import { v4 as uuidv4 } from "uuid";
 
@@ -33,20 +34,22 @@ const App = () => {
   // ]);
 
   return (
-    <div>
-      <Header />
-      {/* <form className='input-value-sum' value='sum' onSubmit={addInputValues}> */}
-      <ResortsSelection />
-      <label>Home Airport:</label>
-      <AutoComplete name='autocomplete-airport' items={airports} />
-      {/* <AirportInput /> */}
-      <NumOfPeople />
-      <Dates />
-      <FindTripInfoButton />
-      <TripInfoSum />
-      {/* </form> */}
-      {/* <Footer /> */}
-    </div>
+    <Provider>
+      <div>
+        <Header />
+        {/* <form className='input-value-sum' value='sum' onSubmit={addInputValues}> */}
+        <ResortsSelection />
+        <label>Home Airport:</label>
+        <AutoComplete name="autocomplete-airport" items={airports} />
+        {/* <AirportInput /> */}
+        <NumOfPeople />
+        <Dates />
+        <FindTripInfoButton />
+        <TripInfoSum />
+        {/* </form> */}
+        {/* <Footer /> */}
+      </div>
+    </Provider>
   );
 };
 

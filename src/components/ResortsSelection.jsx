@@ -1,9 +1,9 @@
-import React, { useState, useContext, useMemo, createContext } from "react";
+import React, { useState, useMemo } from "react";
 import MultiSelect from "react-multi-select-component";
 import "./ResortSelection.css";
 // import styled from "styled-components";
 
-export const ResortSelectionContext = createContext([]);
+import { Context } from "../ContextState";
 
 const ResortSelection = (props) => {
   const MidWest = [
@@ -26,60 +26,56 @@ const ResortSelection = (props) => {
     { label: "Alpine Meadows", value: "Apline Meadows" },
   ];
 
-  const [selectedMW, setSelectedMW] = useState([]);
+  // const [selectedMW, setSelectedMW] = useState([]);
   const [selectedRockies, setSelectedRockies] = useState([]);
   const [selectedSierra, setSelectedSierra] = useState([]);
 
-  const midWestSelection = useMemo(() => ({ selectedMW, setSelectedMW }), [
-    selectedMW,
-    setSelectedMW,
-  ]);
+  // const midWestSelection = useMemo(() => ({ selectedMW, setSelectedMW }), [
+  //   selectedMW,
+  //   setSelectedMW,
+  // ]);
 
   // props.onSelectedResorts(selectedMW);
 
   return (
-    <div className='resortSelection'>
-      <div className='resortList'>
-        <div className='midwest'>
-          <h1>MID WEST</h1>
-          <pre>{JSON.stringify(selectedMW)}</pre>
-          <ResortSelectionContext.Provider value={selectedMW}>
-            {console.log(
-              "ResortsSelection midWestSelection is: ",
-              midWestSelection
-            )}
-            {console.log("ResortsSelection selected MW is: ", selectedMW)}
-            {console.log("ResortsSelection setSelectedMW is: ", setSelectedMW)}
-            <MultiSelect
-              options={MidWest}
-              value={selectedMW}
-              onChange={setSelectedMW}
-              labelledBy={"Select"}
-            />
-          </ResortSelectionContext.Provider>
-        </div>
+    <Context.Consumer>
+      {({ setSelectedMW, selectedMW }) => (
+        <div className="resortSelection">
+          <div className="resortList">
+            <div className="midwest">
+              <h1>MID WEST</h1>
+              <pre>{JSON.stringify(selectedMW)}</pre>
+              <MultiSelect
+                options={MidWest}
+                value={selectedMW}
+                onChange={setSelectedMW}
+                labelledBy={"Select"}
+              />
+            </div>
 
-        <div className='rockies'>
-          <h1>ROCKIES</h1>
-          <MultiSelect
-            options={Rockies}
-            value={selectedRockies}
-            onChange={setSelectedRockies}
-            labelledBy={"Select"}
-          />
-        </div>
+            <div className="rockies">
+              <h1>ROCKIES</h1>
+              <MultiSelect
+                options={Rockies}
+                value={selectedRockies}
+                onChange={setSelectedRockies}
+                labelledBy={"Select"}
+              />
+            </div>
 
-        <div className='sierra'>
-          <h1>WEST</h1>
-          <MultiSelect
-            options={Sierra}
-            value={selectedSierra}
-            onChange={setSelectedSierra}
-            labelledBy={"Select"}
-          />
+            <div className="sierra">
+              <h1>WEST</h1>
+              <MultiSelect
+                options={Sierra}
+                value={selectedSierra}
+                onChange={setSelectedSierra}
+                labelledBy={"Select"}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Context.Consumer>
   );
 };
 

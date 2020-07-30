@@ -1,8 +1,7 @@
-import React, { createContext } from "react";
+import React from "react";
 import "./AutoComplete.css";
 import { v4 as uuidv4 } from "uuid";
-
-export const AirportContext = createContext("");
+import { Context } from "../ContextState";
 
 export default class AutoComplete extends React.Component {
   constructor(props) {
@@ -53,21 +52,24 @@ export default class AutoComplete extends React.Component {
   render() {
     const { text } = this.state;
     return (
-      <div className='auto-complete'>
-        <input
-          value={text}
-          onChange={this.onTextChanged}
-          placeholder='Home Airport'
-          type='text'
-          // required
-        />
-        {this.renderSuggestions()}
-        {/* {console.log(`this.text is ${text}`)} */}
-        <AirportContext.Provider value={text}></AirportContext.Provider>
-        {console.log("AutoComplete text is: ", text)}
-        {/* <button onClick={() => this.setState(text)}>Submit Airport</button> */}
-        <pre>{JSON.stringify(text)}</pre>
-      </div>
+      <Context.Consumer>
+        {({ setAirport }) => (
+          <div className="auto-complete">
+            <input
+              value={text}
+              onChange={this.onTextChanged}
+              placeholder="Home Airport"
+              type="text"
+              // required
+            />
+            {this.renderSuggestions()}
+            {/* {console.log(`this.text is ${text}`)} */}
+            {console.log("AutoComplete text is: ", text)}
+            <button onClick={() => setAirport(text)}>Submit Airport</button>
+            <pre>{JSON.stringify(text)}</pre>
+          </div>
+        )}
+      </Context.Consumer>
     );
   }
 }
