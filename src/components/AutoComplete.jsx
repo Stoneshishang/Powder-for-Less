@@ -3,6 +3,8 @@ import "./AutoComplete.css";
 import { v4 as uuidv4 } from "uuid";
 import { Context } from "../ContextState";
 
+// https://www.youtube.com/watch?v=2sBDf8xbKEY
+
 export default class AutoComplete extends React.Component {
   constructor(props) {
     super(props);
@@ -58,6 +60,7 @@ export default class AutoComplete extends React.Component {
             <input
               value={text}
               onChange={this.onTextChanged}
+              // onClick={() => setAirport(text)}
               placeholder="Home Airport"
               type="text"
               // required
@@ -66,7 +69,7 @@ export default class AutoComplete extends React.Component {
             {/* {console.log(`this.text is ${text}`)} */}
             {console.log("AutoComplete text is: ", text)}
             <button onClick={() => setAirport(text)}>Submit Airport</button>
-            <pre>{JSON.stringify(text)}</pre>
+            {/* <pre>{JSON.stringify(text)}</pre> */}
           </div>
         )}
       </Context.Consumer>

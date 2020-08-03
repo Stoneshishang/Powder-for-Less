@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import MultiSelect from "react-multi-select-component";
 import "./ResortSelection.css";
 // import styled from "styled-components";
 
 import { Context } from "../ContextState";
 
-const ResortSelection = (props) => {
+const ResortSelection = () => {
   const MidWest = [
     { label: "Boyne Mountain", value: "boyne-mountain" },
     { label: "Boyne Highland", value: "boyne-highland" },
@@ -27,8 +27,8 @@ const ResortSelection = (props) => {
   ];
 
   // const [selectedMW, setSelectedMW] = useState([]);
-  const [selectedRockies, setSelectedRockies] = useState([]);
-  const [selectedSierra, setSelectedSierra] = useState([]);
+  // const [selectedRockies, setSelectedRockies] = useState([]);
+  // const [selectedSierra, setSelectedSierra] = useState([]);
 
   // const midWestSelection = useMemo(() => ({ selectedMW, setSelectedMW }), [
   //   selectedMW,
@@ -38,13 +38,13 @@ const ResortSelection = (props) => {
   // props.onSelectedResorts(selectedMW);
 
   return (
-    <Context.Consumer>
-      {({ setSelectedMW, selectedMW }) => (
-        <div className="resortSelection">
-          <div className="resortList">
+    <div className="resortSelection">
+      <div className="resortList">
+        <Context.Consumer>
+          {({ selectedMW, setSelectedMW }) => (
             <div className="midwest">
               <h1>MID WEST</h1>
-              <pre>{JSON.stringify(selectedMW)}</pre>
+              {/* <pre>{JSON.stringify(selectedResorts)}</pre> */}
               <MultiSelect
                 options={MidWest}
                 value={selectedMW}
@@ -52,7 +52,11 @@ const ResortSelection = (props) => {
                 labelledBy={"Select"}
               />
             </div>
+          )}
+        </Context.Consumer>
 
+        <Context.Consumer>
+          {({ selectedRockies, setSelectedRockies }) => (
             <div className="rockies">
               <h1>ROCKIES</h1>
               <MultiSelect
@@ -62,20 +66,26 @@ const ResortSelection = (props) => {
                 labelledBy={"Select"}
               />
             </div>
+          )}
+        </Context.Consumer>
 
-            <div className="sierra">
-              <h1>WEST</h1>
-              <MultiSelect
-                options={Sierra}
-                value={selectedSierra}
-                onChange={setSelectedSierra}
-                labelledBy={"Select"}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-    </Context.Consumer>
+        <Context.Consumer>
+          {({ selectedSierra, setSelectedSierra }) => {
+            return (
+              <div className="sierra">
+                <h1>WEST</h1>
+                <MultiSelect
+                  options={Sierra}
+                  value={selectedSierra}
+                  onChange={setSelectedSierra}
+                  labelledBy={"Select"}
+                />
+              </div>
+            );
+          }}
+        </Context.Consumer>
+      </div>
+    </div>
   );
 };
 

@@ -3,21 +3,38 @@ import React, { useContext } from "react";
 import { Context } from "../ContextState";
 
 const TripInfoSum = () => {
-  const { airport, setAirport, selectedMW, setSelectedMW } = useContext(
-    Context,
-  );
+  const {
+    airport,
+    // setAirport,
+    selectedMW,
+    // setSelectedResorts,
+    selectedRockies,
+    // setSelectedRockies,
+    selectedSierra,
 
-  console.log("TripInfoSum selectedMW is: ", selectedMW);
-  console.log("TripInfoSum setSelectedMW is: ", setSelectedMW);
+    num,
+  } = useContext(Context);
 
-  console.log("TripInfoSum airport is: ", airport);
+  // console.log("TripInfoSum selectedResorts are: ", selectedResorts);
+  // console.log("TripInfoSum setSelectedResorts are: ", setSelectedResorts);
+  // console.log("TripInfoSum setSelectedRockies is: ", setSelectedRockies);
+
+  // console.log("TripInfoSum airport is: ", airport);
 
   return (
     <div>
-      <button onClick={() => setSelectedMW(selectedMW)}>submit resorts</button>
-      <pre>TripInfoSum is {JSON.stringify(selectedMW)}</pre>
-      <button onClick={() => setAirport(airport)}>Submit Airport</button>
-      {airport}
+      <pre>
+        TripInfoSum selected MW resorts are {JSON.stringify(selectedMW)}
+      </pre>
+      <pre>
+        TirpInfoSum Rockies resorts are {JSON.stringify(selectedRockies)}
+      </pre>
+      <pre>TirpInfoSum Sierra resorts are {JSON.stringify(selectedSierra)}</pre>
+
+      <pre>TripInfoSum home airpot is {JSON.stringify(airport)}</pre>
+
+      <pre>TripInfoSum Number of Traveler is {JSON.stringify(num)}</pre>
+      {/* {airport} */}
     </div>
   );
 };
