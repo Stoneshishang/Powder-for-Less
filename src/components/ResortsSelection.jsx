@@ -38,6 +38,7 @@ const ResortSelection = () => {
   // props.onSelectedResorts(selectedMW);
 
   return (
+    // Render the MultiSelected Boxes by resorts region.
     <div className="resortSelection">
       <div className="resortList">
         <Context.Consumer>
