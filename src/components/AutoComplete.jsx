@@ -3,8 +3,6 @@ import "./AutoComplete.css";
 import { v4 as uuidv4 } from "uuid";
 import { Context } from "../ContextState";
 
-// https://www.youtube.com/watch?v=2sBDf8xbKEY
-
 export default class AutoComplete extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +15,14 @@ export default class AutoComplete extends React.Component {
   onTextChanged = (e) => {
     const { items } = this.props;
     const value = e.target.value;
-    // console.log(`autocomplete value is ${value}`);
+    console.log(`autocomplete value is ${value}`);
     let suggestions = [];
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, "i");
       suggestions = items.sort().filter((v) => regex.test(v));
     }
     this.setState(() => ({ suggestions, text: value }));
+    // this.setAirport(value);
   };
 
   suggestionSelected = (value) => {
@@ -44,6 +43,7 @@ export default class AutoComplete extends React.Component {
         {suggestions.map((item) => (
           <li key={uuidv4()} onClick={() => this.suggestionSelected(item)}>
             {item}
+            {/* item is the list of airports after input the first letter */}
             {/* {console.log(`this.item is ${item}`)} */}
           </li>
         ))}
@@ -60,7 +60,6 @@ export default class AutoComplete extends React.Component {
             <input
               value={text}
               onChange={this.onTextChanged}
-              // onClick={() => setAirport(text)}
               placeholder="Home Airport"
               type="text"
               // required
@@ -69,7 +68,7 @@ export default class AutoComplete extends React.Component {
             {/* {console.log(`this.text is ${text}`)} */}
             {console.log("AutoComplete text is: ", text)}
             <button onClick={() => setAirport(text)}>Submit Airport</button>
-            {/* <pre>{JSON.stringify(text)}</pre> */}
+            <pre>{JSON.stringify(text)}</pre>
           </div>
         )}
       </Context.Consumer>
