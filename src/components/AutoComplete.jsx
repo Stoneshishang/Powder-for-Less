@@ -12,7 +12,7 @@ export default class AutoComplete extends React.Component {
     };
   }
 
-  onTextChanged = (e) => {
+  onTextChanged = (e, setAirport) => {
     const { items } = this.props;
     const value = e.target.value;
     console.log(`autocomplete value is ${value}`);
@@ -22,7 +22,7 @@ export default class AutoComplete extends React.Component {
       suggestions = items.sort().filter((v) => regex.test(v));
     }
     this.setState(() => ({ suggestions, text: value }));
-    // this.setAirport(value);
+    setAirport(value);
   };
 
   suggestionSelected = (value) => {
@@ -59,7 +59,7 @@ export default class AutoComplete extends React.Component {
           <div className="auto-complete">
             <input
               value={text}
-              onChange={this.onTextChanged}
+              onChange={(e) => this.onTextChanged(e, setAirport)}
               placeholder="Home Airport"
               type="text"
               // required
@@ -67,7 +67,6 @@ export default class AutoComplete extends React.Component {
             {this.renderSuggestions()}
             {/* {console.log(`this.text is ${text}`)} */}
             {console.log("AutoComplete text is: ", text)}
-            <button onClick={() => setAirport(text)}>Submit Airport</button>
             <pre>{JSON.stringify(text)}</pre>
           </div>
         )}
