@@ -10,7 +10,7 @@ import AutoComplete from "./components/AutoComplete";
 import airports from "./components/airports";
 // import TripInfoDetail from "./components/TripInfoDetail";
 import TripInfoSum from "./components/TripInfoSum";
-import { Provider } from "./ContextState";
+import { InfoProvider } from "./ContextState";
 
 // import { v4 as uuidv4 } from "uuid";
 
@@ -20,7 +20,7 @@ const App = () => {
   // };
 
   return (
-    <Provider>
+    <InfoProvider>
       <div>
         <Header />
         <ResortsSelection />
@@ -32,7 +32,7 @@ const App = () => {
         <TripInfoSum />
         {/* <Footer /> */}
       </div>
-    </Provider>
+    </InfoProvider>
   );
 };
 
