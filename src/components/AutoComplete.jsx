@@ -1,76 +1,58 @@
-import React from "react";
-import "./AutoComplete.css";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState, useContext } from "react";
 import { Context } from "../ContextState";
 
-export default class AutoComplete extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      suggestions: [],
-      text: "",
-    };
-  }
+import "./AutoComplete.css";
 
-  onTextChanged = (e, setAirport) => {
-    const { items } = this.props;
-    const value = e.target.value;
-    console.log(`autocomplete value is ${value}`);
-    let suggestions = [];
-    if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, "i");
-      suggestions = items.sort().filter((v) => regex.test(v));
-    }
-    this.setState(() => ({ suggestions, text: value }));
-    setAirport(value);
+const Suggestions = ({ suggestions = [], handleSelectSuggestion }) => {
+  if (suggestions.length === 0) return null;
+
+  return (
+    <ul>
+      {suggestions.map((item) => (
+        <li key={item} onClick={() => handleSelectSuggestion(item)}>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const AutoComplete = ({ items }) => {
+  const [suggestions, setSuggestions] = useState([]);
+  const [text, setText] = useState("");
+
+  const { setAirport } = useContext(Context);
+
+  const handleTextChange = ({ target: { value = "" } }) => {
+    const regex = new RegExp(`^${value}`, "i");
+    const updatedSuggestions =
+      value.length > 0
+        ? items
+            .slice()
+            .sort()
+            .filter((v) => regex.test(v))
+        : [];
+    setSuggestions(updatedSuggestions);
+    setText(value);
   };
 
-  suggestionSelected = (value) => {
-    this.setState(() => ({
-      text: value,
-      suggestions: [],
-    }));
-    // console.log(`suggestionSelected is ${value}`);
+  const handleSelectSuggestion = (selectedItem) => {
+    setSuggestions([]);
+    setText(selectedItem);
+    setAirport(selectedItem);
   };
 
-  renderSuggestions() {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
-      return null;
-    }
-    return (
-      <ul key={uuidv4()}>
-        {suggestions.map((item) => (
-          <li key={uuidv4()} onClick={() => this.suggestionSelected(item)}>
-            {item}
-            {/* item is the list of airports after input the first letter */}
-            {/* {console.log(`this.item is ${item}`)} */}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <div className="auto-complete">
+      <input
+        value={text}
+        onChange={handleTextChange}
+        placeholder="Home Airport"
+        type="text"
+      />
+      <Suggestions {...{ suggestions, handleSelectSuggestion }} />
+    </div>
+  );
+};
 
-  render() {
-    const { text } = this.state;
-    return (
-      <Context.Consumer>
-        {({ setAirport }) => (
-          <div className="auto-complete">
-            <input
-              value={text}
-              onChange={(e) => this.onTextChanged(e, setAirport)}
-              placeholder="Home Airport"
-              type="text"
-              // required
-            />
-            {this.renderSuggestions()}
-            {/* {console.log(`this.text is ${text}`)} */}
-            {console.log("AutoComplete text is: ", text)}
-            <pre>{JSON.stringify(text)}</pre>
-          </div>
-        )}
-      </Context.Consumer>
-    );
-  }
-}
+export default AutoComplete;
