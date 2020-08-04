@@ -1,47 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Dates() {
-  const [departureDate, setDepartureDate] = useState("");
-  const [arrivalDate, setArrivalDate] = useState("");
+import { Context } from "../ContextState";
 
-  const onDepartureDateHandler = (e) => {
-    setDepartureDate(e.target.value);
-    console.log(`Departure Date is ${e.target.value}`);
-  };
+const Dates = () => {
+  // const [departureDate, setDepartureDate] = useState("");
+  // const [arrivalDate, setArrivalDate] = useState("");
 
-  const onArrivalDateHandler = (e) => {
-    setArrivalDate(e.target.value);
-    console.log(`Arrival Date is ${e.target.value}`);
-  };
+  // const onDepartureDateHandler = (e) => {
+  //   setDepartureDate(e.target.value);
+  //   console.log(`Departure Date is ${e.target.value}`);
+  // };
+
+  // const onArrivalDateHandler = (e) => {
+  //   setArrivalDate(e.target.value);
+  //   console.log(`Arrival Date is ${e.target.value}`);
+  // };
 
   return (
-    <div className='dates'>
-      <div>
-        <label htmlFor='departure-date'>Departure Date:</label>
-        <input
-          type='date'
-          name='departure-date'
-          placeholder='Deaprture Date'
-          value={departureDate}
-          onChange={onDepartureDateHandler}
-          // required
-        />
-        <pre>Selected departureDate is {JSON.stringify(departureDate)}</pre>
-      </div>
-      <div>
-        <label htmlFor='return-date'>Return Date:</label>
-        <input
-          type='date'
-          name='return-date'
-          placeholder='Return Date'
-          value={arrivalDate}
-          onChange={onArrivalDateHandler}
-          // required
-        />
-        <pre>Selected arrivalDate is {JSON.stringify(arrivalDate)}</pre>
-      </div>
+    <div className="dates">
+      <Context.Consumer>
+        {({ departureDate, setDepartureDate }) => (
+          <div>
+            <label htmlFor="departure-date">Departure Date:</label>
+            <input
+              type="date"
+              name="departure-date"
+              placeholder="Deaprture Date"
+              value={departureDate}
+              onChange={(event) => setDepartureDate(event.target.value)}
+              // required
+            />
+            <pre>Selected departureDate is {JSON.stringify(departureDate)}</pre>
+          </div>
+        )}
+      </Context.Consumer>
+      <Context.Consumer>
+        {({ arrivalDate, setArrivalDate }) => (
+          <div>
+            <label htmlFor="return-date">Return Date:</label>
+            <input
+              type="date"
+              name="return-date"
+              placeholder="Return Date"
+              value={arrivalDate}
+              onChange={(event) => setArrivalDate(event.target.value)}
+              // required
+            />
+            <pre>Selected arrivalDate is {JSON.stringify(arrivalDate)}</pre>
+          </div>
+        )}
+      </Context.Consumer>
     </div>
   );
-}
+};
 
 export default Dates;

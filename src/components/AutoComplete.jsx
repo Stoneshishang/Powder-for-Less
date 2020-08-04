@@ -23,6 +23,12 @@ const AutoComplete = ({ items }) => {
 
   const { setAirport } = useContext(Context);
 
+  const handleSelectSuggestion = (selectedItem) => {
+    setSuggestions([]);
+    setText(selectedItem);
+    setAirport(selectedItem);
+  };
+
   const handleTextChange = ({ target: { value = "" } }) => {
     const regex = new RegExp(`^${value}`, "i");
     const updatedSuggestions =
@@ -36,12 +42,6 @@ const AutoComplete = ({ items }) => {
     setText(value);
   };
 
-  const handleSelectSuggestion = (selectedItem) => {
-    setSuggestions([]);
-    setText(selectedItem);
-    setAirport(selectedItem);
-  };
-
   return (
     <div className="auto-complete">
       <input
@@ -49,6 +49,7 @@ const AutoComplete = ({ items }) => {
         onChange={handleTextChange}
         placeholder="Home Airport"
         type="text"
+        // required
       />
       <Suggestions {...{ suggestions, handleSelectSuggestion }} />
     </div>

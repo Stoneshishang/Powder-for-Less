@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Context } from "../ContextState";
 
-function NumOfPeople() {
+const NumOfPeople = () => {
   return (
     <Context.Consumer>
       {({ num, setNum }) => (
@@ -15,12 +15,12 @@ function NumOfPeople() {
             placeholder="Number of Passengers"
             // required
           />
-          {console.log("Context.Consumer num is: ", num)}
+          {/* {console.log("Context.Consumer num is: ", num)} */}
           <pre>input Num is {JSON.stringify(num)}</pre>
         </div>
       )}
     </Context.Consumer>
   );
-}
+};
 
 export default NumOfPeople;
