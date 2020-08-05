@@ -15,10 +15,6 @@ import { InfoProvider } from "./ContextState";
 // import { v4 as uuidv4 } from "uuid";
 
 const App = () => {
-  // const addInputValues = (e) => {
-  //   e.preventDefault();
-  // };
-
   return (
     <InfoProvider>
       <div>
