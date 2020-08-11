@@ -31,7 +31,7 @@ export const InfoProvider = ({ children }) => {
   const [selectedSierra, setSelectedSierra] = useState([]);
   const [num, setNum] = useState("");
   const [departureDate, setDepartureDate] = useState("");
-  const [arrivalDate, setArrivalDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
 
   const value = {
     // Airport Selection
@@ -53,8 +53,8 @@ export const InfoProvider = ({ children }) => {
     departureDate,
     setDepartureDate,
 
-    arrivalDate,
-    setArrivalDate,
+    returnDate,
+    setReturnDate,
   };
 
   // {value} is object property value shorthand.

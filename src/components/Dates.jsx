@@ -35,18 +35,18 @@ const Dates = () => {
         )}
       </Context.Consumer>
       <Context.Consumer>
-        {({ arrivalDate, setArrivalDate }) => (
+        {({ returnDate, setReturnDate }) => (
           <div>
             <label htmlFor="return-date">Return Date:</label>
             <input
               type="date"
               name="return-date"
               placeholder="Return Date"
-              value={arrivalDate}
-              onChange={(event) => setArrivalDate(event.target.value)}
+              value={returnDate}
+              onChange={(event) => setReturnDate(event.target.value)}
               // required
             />
-            <pre>Selected arrivalDate is {JSON.stringify(arrivalDate)}</pre>
+            <pre>Selected arrivalDate is {JSON.stringify(returnDate)}</pre>
           </div>
         )}
       </Context.Consumer>
