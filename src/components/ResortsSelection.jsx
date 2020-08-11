@@ -1,7 +1,6 @@
 import React from "react";
 import MultiSelect from "react-multi-select-component";
 import "./ResortSelection.css";
-// import styled from "styled-components";
 
 import { Context } from "../ContextState";
 
@@ -26,21 +25,11 @@ const ResortSelection = () => {
     { label: "Alpine Meadows", value: "Apline Meadows" },
   ];
 
-  // const [selectedMW, setSelectedMW] = useState([]);
-  // const [selectedRockies, setSelectedRockies] = useState([]);
-  // const [selectedSierra, setSelectedSierra] = useState([]);
-
-  // const midWestSelection = useMemo(() => ({ selectedMW, setSelectedMW }), [
-  //   selectedMW,
-  //   setSelectedMW,
-  // ]);
-
-  // props.onSelectedResorts(selectedMW);
-
   return (
     // Render the MultiSelected Boxes by resorts region.
     <div className="resortSelection">
       <div className="resortList">
+        {/* Context.Consumer vs useContext https://stackoverflow.com/questions/56816374/context-consumer-vs-usecontext-to-access-values-passed-by-context-provider */}
         <Context.Consumer>
           {({ selectedMW, setSelectedMW }) => (
             <div className="midwest">
