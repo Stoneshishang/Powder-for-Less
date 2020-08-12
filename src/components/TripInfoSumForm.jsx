@@ -37,6 +37,8 @@ const TripInfoSum = () => {
     num,
     departureDate,
     returnDate,
+    weatherData,
+    fetchWeatherData,
   } = useContext(Context);
 
   const today = new Date();
@@ -52,24 +54,16 @@ const TripInfoSum = () => {
   const [count, setCount] = useState(0);
 
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // update selected date item
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        "https://api.openweathermap.org/data/2.5/onecall?lat=40.562307&lon=-111.640067&appid=7627edc2f6ba9856d14e74e740f35ff0",
-      );
-      const data = await response.json();
-      console.log("*****************************************************");
-      console.log("data before access is: ", data);
-      const item = data.daily[5].weather[0].description;
-      setData(item);
-      console.log("weather description is: ", item);
+    if (loading) {
       setLoading(false);
+      const item = weatherData.data.daily[5].weather[0].description;
+      setData(item);
     }
-    fetchData();
-  }, []);
+  }, [loading, weatherData.data]);
 
   console.log("data outside of useEffect is: ", data);
   // const { data, loading } = useFetch(
@@ -80,6 +74,14 @@ const TripInfoSum = () => {
   //   event.preventDefault();
 
   // }
+
+  // handler used to trigger api fetch with necessary data
+  const handleFetchWeather = () => {
+    const lat = "40.562307";
+    const lon = "-111.640067";
+    setLoading(true);
+    fetchWeatherData({ lat, lon }); // pass in the date
+  };
 
   return (
     <div>
