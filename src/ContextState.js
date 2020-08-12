@@ -40,7 +40,10 @@ export const InfoProvider = ({ children }) => {
 
   const fetchWeatherData = async (args) => {
     const data = await fetchWeather(args);
-    setWeatherData({ lastFetched: Date.now(), data });
+    // console.log("ContextState fetchweatherData is: ", data);
+
+    // setWeatherData({ lastFetched: Date.now(), data });
+    setWeatherData(data);
   };
 
   const value = {
