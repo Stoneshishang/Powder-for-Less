@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { fetchWeather } from "./actions";
 
 const defaultState = {
   // Airport Selection
@@ -20,6 +21,9 @@ const defaultState = {
 
   arrivalDate: "",
   setArrivalDate: () => {},
+  // Weather Data
+  fetchWeatherData: () => {},
+  weatherData: {},
 };
 
 export const Context = createContext(defaultState);
@@ -32,6 +36,12 @@ export const InfoProvider = ({ children }) => {
   const [num, setNum] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [weatherData, setWeatherData] = useState({});
+
+  const fetchWeatherData = async (args) => {
+    const data = await fetchWeather(args);
+    setWeatherData({ lastFetched: Date.now(), data });
+  };
 
   const value = {
     // Airport Selection
@@ -55,6 +65,9 @@ export const InfoProvider = ({ children }) => {
 
     returnDate,
     setReturnDate,
+
+    weatherData,
+    fetchWeatherData,
   };
 
   // {value} is object property value shorthand.
