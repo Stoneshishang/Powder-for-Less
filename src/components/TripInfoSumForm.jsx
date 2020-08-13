@@ -26,6 +26,9 @@ const TripInfoSum = () => {
     const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
 
     const daysDepartureTimeDiff = departureTimeDiff / (1000 * 60 * 60 * 24);
+
+    //Trying to access the specific date in daily array dynamically based on the daysDepartureTimeDiff,
+    //Somehow it is not working.
     const item = weatherData.daily;
     console.log("weatherData item is: ", item);
     console.log("departure time diff is: ", daysDepartureTimeDiff);
