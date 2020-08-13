@@ -16,6 +16,7 @@ const TripInfoSum = () => {
   } = useContext(Context);
 
   const [count, setCount] = useState(0);
+
   // update selected date item
   useEffect(() => {
     const today = new Date();
@@ -25,11 +26,16 @@ const TripInfoSum = () => {
     const currentDate = yyyy + "-" + mm + "-" + dd;
     const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
 
-    const daysDepartureTimeDiff = departureTimeDiff / (1000 * 60 * 60 * 24);
+    const daysDepartureTimeDiff = Number(
+      departureTimeDiff / (1000 * 60 * 60 * 24),
+    );
 
-    //Trying to access the specific date in daily array dynamically based on the daysDepartureTimeDiff,
-    //Somehow it is not working.
-    const item = weatherData.daily;
+    // fetch the chosen day's weather conditon.
+    let item = weatherData.daily;
+    if (item !== undefined) {
+      item = weatherData.daily[daysDepartureTimeDiff];
+    }
+
     console.log("weatherData item is: ", item);
     console.log("departure time diff is: ", daysDepartureTimeDiff);
   }, [departureDate, weatherData]);
@@ -45,14 +51,7 @@ const TripInfoSum = () => {
     const lon = "-111.640067";
     fetchWeatherData({ lat, lon });
 
-    console.log("handleFetchWeather returns: ", weatherData);
-
-    // const item = weatherData;
-    // // const wholeitem = weatherData.daily;
-    // // console.log("weatherData whole is", wholeitem);
-    // console.log("weatherData item is: ", weatherData);
-
-    // pass in the date
+    console.log("handleFetchWeather returns: ", weatherData.daily);
   };
 
   return (

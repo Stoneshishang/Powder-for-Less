@@ -36,13 +36,12 @@ export const InfoProvider = ({ children }) => {
   const [num, setNum] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState("");
 
   const fetchWeatherData = async (args) => {
     const data = await fetchWeather(args);
     // console.log("ContextState fetchweatherData is: ", data);
 
-    // setWeatherData({ lastFetched: Date.now(), data });
     setWeatherData(data);
   };
 
