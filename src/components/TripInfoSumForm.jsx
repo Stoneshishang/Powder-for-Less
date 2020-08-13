@@ -26,8 +26,7 @@ const TripInfoSum = () => {
     const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
 
     const daysDepartureTimeDiff = departureTimeDiff / (1000 * 60 * 60 * 24);
-    const item = weatherData;
-
+    const item = weatherData.daily;
     console.log("weatherData item is: ", item);
     console.log("departure time diff is: ", daysDepartureTimeDiff);
   }, [departureDate, weatherData]);
