@@ -1,4 +1,4 @@
-import { appid } from "./consts";
+import { appid } from "./apiKeys";
 
 const fetchWeather = async ({ lat, lon }) => {
   const params = new URLSearchParams({ lat, lon, appid }).toString();
@@ -6,7 +6,7 @@ const fetchWeather = async ({ lat, lon }) => {
   // const url = "https://jsonplaceholder.typicode.com/posts"; //for testing in case of infinite loop
   const response = await fetch(url);
   const jsonResponse = await response.json();
-  // console.log("actions jsonResponse is: ", jsonResponse);
+
   return jsonResponse;
 };
 

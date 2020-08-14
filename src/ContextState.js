@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { fetchWeather } from "./actions";
+import { fetchWeather } from "./apis/weatherAPI";
 
 const defaultState = {
   // Airport Selection

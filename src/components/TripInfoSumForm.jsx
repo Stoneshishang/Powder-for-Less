@@ -32,10 +32,14 @@ const TripInfoSum = () => {
     // fetch the chosen day's weather conditon.
     let item = weatherData.daily;
     if (item !== undefined) {
-      item = weatherData.daily[daysDepartureTimeDiff];
+      item = weatherData.daily[daysDepartureTimeDiff].humidity;
     }
-    console.log("weatherData item is: ", item);
-    console.log("departure time diff is: ", daysDepartureTimeDiff);
+    console.log(
+      `chosen day ${departureDate} humidity for testing is: ${JSON.stringify(
+        item,
+      )}`,
+    );
+    // console.log("departure time diff is: ", daysDepartureTimeDiff);
   }, [departureDate, weatherData]);
 
   // handler used to trigger api fetch with necessary data
@@ -46,7 +50,6 @@ const TripInfoSum = () => {
     );
 
     const chosenResortsCordsArr = selectedMW.map((x) => x.value);
-    // console.log("chosenResortsCordsArr is: ", chosenResortsCordsArr);
 
     const chosenResortsNameArr = selectedMW.map((x) => x.label);
     console.log("chosenResortsNameArr is: ", chosenResortsNameArr);
@@ -59,10 +62,6 @@ const TripInfoSum = () => {
       const lon = chosenResortsCords.lon;
       fetchWeatherData({ lat, lon });
     }
-
-    console.log("handleFetchWeather returns: ", weatherData.daily);
-    // const chosenResortsWeather = chosenResortsCordsArr.map((x) => x.lat);
-    // console.log("chosenResortWeather lat is: ", chosenResortsWeather);
   };
 
   return (

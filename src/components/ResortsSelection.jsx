@@ -8,6 +8,7 @@ const ResortSelection = () => {
   const MidWest = [
     { label: "Boyne Mountain", value: { lat: 45.163557, lon: -84.930053 } },
     { label: "Boyne Highland", value: { lat: 45.470979, lon: -84.935531 } },
+    { label: "Pine Knob", value: { lat: 42.745835, lon: -83.369018 } },
   ];
 
   const Rockies = [
