@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { fetchWeather } from "./apis/weatherAPI";
+import { fetchWeather, fetchFlight } from "./apis/fetchAPI";
 
 const defaultState = {
   // Airport Selection
@@ -24,6 +24,9 @@ const defaultState = {
   // Weather Data
   fetchWeatherData: () => {},
   weatherData: {},
+  // Flight Data
+  fetchFlightData: () => {},
+  flightData: {},
 };
 
 export const Context = createContext(defaultState);
@@ -37,12 +40,20 @@ export const InfoProvider = ({ children }) => {
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [weatherData, setWeatherData] = useState("");
+  const [flightData, setFlightData] = useState("");
 
   const fetchWeatherData = async (args) => {
-    const data = await fetchWeather(args);
-    // console.log("ContextState fetchweatherData is: ", data);
+    const weatherData = await fetchWeather(args);
+    // console.log("ContextState fetchweatherData is: ", weatherData);
 
-    setWeatherData(data);
+    setWeatherData(weatherData);
+  };
+
+  const fetchFlightData = async (args) => {
+    const flightData = await fetchFlight(args);
+    // console.log("ContextState fetchFlightData is: ", flightData);
+
+    setFlightData(flightData);
   };
 
   const value = {
@@ -70,6 +81,9 @@ export const InfoProvider = ({ children }) => {
 
     weatherData,
     fetchWeatherData,
+
+    flightData,
+    fetchFlightData,
   };
 
   // {value} is object property value shorthand.

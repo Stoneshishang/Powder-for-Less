@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { Context } from "../ContextState";
+import { fetchFlight } from "../apis/fetchAPI";
 
 const TripInfoSum = () => {
   const {
@@ -13,6 +14,8 @@ const TripInfoSum = () => {
     returnDate,
     weatherData,
     fetchWeatherData,
+    flightData,
+    fetchFlightData,
   } = useContext(Context);
 
   const [count, setCount] = useState(0);
@@ -40,7 +43,11 @@ const TripInfoSum = () => {
       )}`,
     );
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
-  }, [departureDate, weatherData]);
+
+    let flight = flightData;
+
+    console.log("flightData response is: ", flight);
+  }, [departureDate, weatherData, flightData]);
 
   // handler used to trigger api fetch with necessary data
   const handleFetchWeather = () => {
@@ -62,6 +69,8 @@ const TripInfoSum = () => {
       const lon = chosenResortsCords.lon;
       fetchWeatherData({ lat, lon });
     }
+
+    fetchFlightData();
   };
 
   return (
