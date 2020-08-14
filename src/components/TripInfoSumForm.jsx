@@ -25,7 +25,6 @@ const TripInfoSum = () => {
     const yyyy = today.getFullYear();
     const currentDate = yyyy + "-" + mm + "-" + dd;
     const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
-
     const daysDepartureTimeDiff = Number(
       departureTimeDiff / (1000 * 60 * 60 * 24),
     );
@@ -35,7 +34,6 @@ const TripInfoSum = () => {
     if (item !== undefined) {
       item = weatherData.daily[daysDepartureTimeDiff];
     }
-
     console.log("weatherData item is: ", item);
     console.log("departure time diff is: ", daysDepartureTimeDiff);
   }, [departureDate, weatherData]);
@@ -47,11 +45,24 @@ const TripInfoSum = () => {
       `*************************clicked on it ${count} times ********************************* `,
     );
 
-    const lat = "40.562307";
-    const lon = "-111.640067";
-    fetchWeatherData({ lat, lon });
+    const chosenResortsCordsArr = selectedMW.map((x) => x.value);
+    // console.log("chosenResortsCordsArr is: ", chosenResortsCordsArr);
+
+    const chosenResortsNameArr = selectedMW.map((x) => x.label);
+    console.log("chosenResortsNameArr is: ", chosenResortsNameArr);
+
+    for (let i = 0; i < chosenResortsCordsArr.length; i++) {
+      const chosenResortsCords = chosenResortsCordsArr[i];
+      // console.log("chosenResortsCords is: ", chosenResortsCords);
+
+      const lat = chosenResortsCords.lat;
+      const lon = chosenResortsCords.lon;
+      fetchWeatherData({ lat, lon });
+    }
 
     console.log("handleFetchWeather returns: ", weatherData.daily);
+    // const chosenResortsWeather = chosenResortsCordsArr.map((x) => x.lat);
+    // console.log("chosenResortWeather lat is: ", chosenResortsWeather);
   };
 
   return (
