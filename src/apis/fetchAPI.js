@@ -1,4 +1,4 @@
-import { appid, flightAPIkey } from "./apiKeys";
+import { weatherAPIkey as appid, flightAPIkey } from "./apiKeys";
 
 const fetchWeather = async ({ lat, lon }) => {
   const weatherParams = new URLSearchParams({

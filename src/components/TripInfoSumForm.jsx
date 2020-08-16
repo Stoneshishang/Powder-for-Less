@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { Context } from "../ContextState";
-import { fetchFlight } from "../apis/fetchAPI";
 
 const TripInfoSum = () => {
   const {
@@ -42,8 +41,6 @@ const TripInfoSum = () => {
         item,
       )}`,
     );
-
-    console.log("weatherData in TripInfoSum is: ", weatherData);
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
 
     let flight = flightData;
@@ -52,7 +49,7 @@ const TripInfoSum = () => {
   }, [departureDate, weatherData, flightData]);
 
   // handler used to trigger api fetch with necessary data
-  const handleFetchWeather = () => {
+  const handleFetchData = () => {
     setCount(count + 1);
     console.log(
       `*************************clicked on it ${count} times ********************************* `,
@@ -95,7 +92,7 @@ const TripInfoSum = () => {
 
       {/* <form onSubmit={submitHandler}> */}
 
-      <button onClick={handleFetchWeather}>Click me</button>
+      <button onClick={handleFetchData}>Click me</button>
 
       {/* </form> */}
     </div>

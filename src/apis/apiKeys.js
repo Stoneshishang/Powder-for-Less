@@ -6,4 +6,4 @@ const weatherAPIkey = "7627edc2f6ba9856d14e74e740f35ff0";
 //flight API key from rapid API
 const flightAPIkey = "0f6322963cmshc2c24de3b656c85p184e30jsnbbb318965fe8";
 
-export { weatherAPIkey as appid, flightAPIkey };
+export { weatherAPIkey, flightAPIkey };
