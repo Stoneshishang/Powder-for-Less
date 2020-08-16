@@ -1,11 +1,12 @@
-import { weatherAPIkey, flightAPIkey } from "./apiKeys";
+import { appid, flightAPIkey } from "./apiKeys";
 
 const fetchWeather = async ({ lat, lon }) => {
   const weatherParams = new URLSearchParams({
     lat,
     lon,
-    weatherAPIkey,
+    appid,
   }).toString();
+
   const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?${weatherParams}`;
   // const url = "https://jsonplaceholder.typicode.com/posts"; //for testing in case of infinite loop
   const response = await fetch(weatherURL);
@@ -22,7 +23,7 @@ const fetchFlight = async () =>
   //   inboundpartialdate,
   // }
   {
-    const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/dtw-sky/den-sky/2020-08-15?inboundpartialdate=2020-08-17`;
+    const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/dtw-sky/den-sky/2020-08-19?inboundpartialdate=2020-08-21`;
 
     const response = await fetch(flightURL, {
       method: "GET",

@@ -42,6 +42,8 @@ const TripInfoSum = () => {
         item,
       )}`,
     );
+
+    console.log("weatherData in TripInfoSum is: ", weatherData);
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
 
     let flight = flightData;
