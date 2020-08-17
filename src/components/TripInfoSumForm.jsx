@@ -19,6 +19,16 @@ const TripInfoSum = () => {
 
   const [count, setCount] = useState(0);
 
+  const chosenResortsAirportArr = selectedMW.map((x) => x.airport);
+
+  //find the unique items in the string.
+  const uniqueAirports = [...new Set(chosenResortsAirportArr)];
+
+  const homeAirportCode = airport.substring(
+    airport.length - 4,
+    airport.length - 1,
+  );
+
   // update selected date item
   useEffect(() => {
     const today = new Date();
@@ -30,7 +40,6 @@ const TripInfoSum = () => {
     const daysDepartureTimeDiff = Number(
       departureTimeDiff / (1000 * 60 * 60 * 24),
     );
-
     // fetch the chosen day's weather conditon.
     let item = weatherData.daily;
     if (item !== undefined) {
@@ -42,9 +51,7 @@ const TripInfoSum = () => {
       )}`,
     );
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
-
     let flight = flightData;
-
     console.log("flightData response is: ", flight);
   }, [departureDate, weatherData, flightData]);
 
@@ -55,10 +62,8 @@ const TripInfoSum = () => {
       `*************************clicked on it ${count} times ********************************* `,
     );
 
+    //fetch weather data base on the resorts' cordinates.
     const chosenResortsCordsArr = selectedMW.map((x) => x.value);
-
-    const chosenResortsNameArr = selectedMW.map((x) => x.label);
-    console.log("chosenResortsNameArr is: ", chosenResortsNameArr);
 
     for (let i = 0; i < chosenResortsCordsArr.length; i++) {
       const chosenResortsCords = chosenResortsCordsArr[i];
@@ -69,7 +74,26 @@ const TripInfoSum = () => {
       fetchWeatherData({ lat, lon });
     }
 
-    fetchFlightData();
+    //fetch flight data base on the user location, selected resorts, and dates.
+    for (let j = 0; j < uniqueAirports.length; j++) {
+      const originplace = homeAirportCode;
+      const destinationplace = uniqueAirports[j];
+      const outboundpartialdate = departureDate;
+      const inboundpartialdate = returnDate;
+
+      if (originplace !== destinationplace) {
+        fetchFlightData({
+          originplace,
+          destinationplace,
+          outboundpartialdate,
+          inboundpartialdate,
+        });
+      } else {
+        console.log(
+          "You live very close to your selected resorts, you could drive!",
+        );
+      }
+    }
   };
 
   return (

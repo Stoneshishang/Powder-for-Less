@@ -15,28 +15,26 @@ const fetchWeather = async ({ lat, lon }) => {
   return weatherJsonResponse;
 };
 
-const fetchFlight = async () =>
-  //   {
-  //   originplace,
-  //   destinationplace,
-  //   outboundpartialdate,
-  //   inboundpartialdate,
-  // }
-  {
-    const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/dtw-sky/den-sky/2020-08-19?inboundpartialdate=2020-08-21`;
+const fetchFlight = async ({
+  originplace,
+  destinationplace,
+  outboundpartialdate,
+  inboundpartialdate,
+}) => {
+  const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originplace}/${destinationplace}/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`;
 
-    const response = await fetch(flightURL, {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host":
-          "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-        "x-rapidapi-key": flightAPIkey,
-      },
-    });
+  const response = await fetch(flightURL, {
+    method: "GET",
+    headers: {
+      "x-rapidapi-host":
+        "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      "x-rapidapi-key": flightAPIkey,
+    },
+  });
 
-    const flightJsonResponse = await response.json();
+  const flightJsonResponse = await response.json();
 
-    return flightJsonResponse;
-  };
+  return flightJsonResponse;
+};
 
 export { fetchWeather, fetchFlight };
