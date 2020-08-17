@@ -28,12 +28,24 @@ const ResortSelection = () => {
   ];
 
   const Rockies = [
-    { label: "Alta Snowbird, UT", value: "alta-snowbird" },
-    { label: "Arapahoe Basin Ski Area, CO", value: "abasin" },
-    { label: "Aspen Snowmass, CO", value: "snowmass" },
-    { label: "Big Sky Resort, MT", value: "big-sky" },
-    { label: "Brighton Resort, UT", value: "brighton" },
-    { label: "Jackson Hole, WY", value: "jackson-hole" },
+    {
+      label: "Alta Snowbird, UT",
+      value: { lat: 40.578996, lon: -111.635285 },
+      airport: "SLC",
+    },
+    {
+      label: "Arapahoe Basin Ski Area, CO",
+      value: { lat: 39.632573, lon: -105.872859 },
+      airport: "DEN",
+    },
+    // { label: "Aspen Snowmass, CO", value: "snowmass",  },
+    // { label: "Big Sky Resort, MT", value: "big-sky" },
+    // { label: "Brighton Resort, UT", value: "brighton" },
+    {
+      label: "Jackson Hole, WY",
+      value: { lat: 43.596489, lon: -110.845369 },
+      airport: "JAC",
+    },
   ];
 
   const Sierra = [

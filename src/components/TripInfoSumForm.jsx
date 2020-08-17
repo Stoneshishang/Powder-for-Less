@@ -19,7 +19,9 @@ const TripInfoSum = () => {
 
   const [count, setCount] = useState(0);
 
-  const chosenResortsAirportArr = selectedMW.map((x) => x.airport);
+  const chosenResortsAirportArr = selectedMW
+    .concat(selectedRockies)
+    .map((x) => x.airport);
 
   //find the unique items in the string.
   const uniqueAirports = [...new Set(chosenResortsAirportArr)];
@@ -63,7 +65,9 @@ const TripInfoSum = () => {
     );
 
     //fetch weather data base on the resorts' cordinates.
-    const chosenResortsCordsArr = selectedMW.map((x) => x.value);
+    const chosenResortsCordsArr = selectedMW
+      .concat(selectedRockies)
+      .map((x) => x.value);
 
     for (let i = 0; i < chosenResortsCordsArr.length; i++) {
       const chosenResortsCords = chosenResortsCordsArr[i];
