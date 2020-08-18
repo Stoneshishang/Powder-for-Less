@@ -37,6 +37,11 @@ const TripInfoSum = () => {
       item = weatherData.daily[daysDepartureTimeDiff].humidity;
     }
 
+    setCountEffect(countEffect + 1);
+    console.log(
+      `---------useEffect triggered ${countEffect} times-------------`,
+    );
+
     console.log(
       `1. chosen day ${departureDate} humidity for testing is: ${JSON.stringify(
         item,
@@ -47,13 +52,10 @@ const TripInfoSum = () => {
     let flightPrice = flightData.Quotes;
     // if (flightDest !== undefined && flightPrice !== undefined) {
     // flightDest = flightData.Places
+
     console.log("2. flight Destination is: ", flightDest);
     console.log("3. flight Price is: ", flightPrice);
 
-    setCountEffect(countEffect + 1);
-    console.log(
-      `---------useEffect triggered ${countEffect} times-------------`,
-    );
     // }
   }, [departureDate, weatherData, flightData]);
 
@@ -68,11 +70,9 @@ const TripInfoSum = () => {
 
   //"Zip" two arrays into one array of objects. so I can iterate through each object.
   // https://stackoverflow.com/questions/50741594/how-to-combine-two-arrays-into-an-array-of-objects-in-javascript
-  const tripObjects = chosenResortsCordsArr.map((x, i) => {
+  const tripObjectsArr = chosenResortsCordsArr.map((x, i) => {
     return { ResortCords: x, Airport: chosenResortsAirportArr[i] };
   });
-
-  console.log("tripObjects is: ", tripObjects);
 
   //extract airport code from string.
   const homeAirportCode = airport.substring(
@@ -90,8 +90,8 @@ const TripInfoSum = () => {
       `*************************clicked on it ${count} times ********************************* `,
     );
 
-    for (let i = 0; i < chosenResortsCordsArr.length; i++) {
-      const chosenResortsCords = chosenResortsCordsArr[i];
+    for (let i = 0; i < tripObjectsArr.length; i++) {
+      const chosenResortsCords = tripObjectsArr[i].ResortCords;
       // console.log("chosenResortsCords is: ", chosenResortsCords);
 
       const lat = chosenResortsCords.lat;
@@ -100,7 +100,7 @@ const TripInfoSum = () => {
 
       //fetch flight data base on the user location, selected resorts, and dates.
       const originplace = homeAirportCode;
-      const destinationplace = chosenResortsAirportArr[i];
+      const destinationplace = tripObjectsArr[i].Airport;
       console.log("destinationplace is: ", destinationplace);
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
