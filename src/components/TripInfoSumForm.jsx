@@ -20,18 +20,6 @@ const TripInfoSum = () => {
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
 
-  const chosenResortsAirportArr = selectedMW
-    .concat(selectedRockies)
-    .map((x) => x.airport);
-
-  //find the unique items in the string.
-  // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
-
-  const homeAirportCode = airport.substring(
-    airport.length - 4,
-    airport.length - 1,
-  );
-
   // update selected date item
   useEffect(() => {
     const today = new Date();
@@ -69,17 +57,31 @@ const TripInfoSum = () => {
     // }
   }, [departureDate, weatherData, flightData]);
 
+  //fetch weather data base on the resorts' cordinates.
+  const chosenResortsCordsArr = selectedMW
+    .concat(selectedRockies)
+    .map((x) => x.value);
+
+  //fetch flight data base on resorts' selections.
+  const chosenResortsAirportArr = selectedMW
+    .concat(selectedRockies)
+    .map((x) => x.airport);
+
+  //find the unique items in the string.
+  // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
+
+  //extract airport code from string.
+  const homeAirportCode = airport.substring(
+    airport.length - 4,
+    airport.length - 1,
+  );
+
   // handler used to trigger api fetch with necessary data
   const handleFetchData = () => {
     setCount(count + 1);
     console.log(
       `*************************clicked on it ${count} times ********************************* `,
     );
-
-    //fetch weather data base on the resorts' cordinates.
-    const chosenResortsCordsArr = selectedMW
-      .concat(selectedRockies)
-      .map((x) => x.value);
 
     for (let i = 0; i < chosenResortsCordsArr.length; i++) {
       const chosenResortsCords = chosenResortsCordsArr[i];
