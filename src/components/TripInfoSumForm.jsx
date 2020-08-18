@@ -18,13 +18,14 @@ const TripInfoSum = () => {
   } = useContext(Context);
 
   const [count, setCount] = useState(0);
+  const [countEffect, setCountEffect] = useState(0);
 
   const chosenResortsAirportArr = selectedMW
     .concat(selectedRockies)
     .map((x) => x.airport);
 
   //find the unique items in the string.
-  const uniqueAirports = [...new Set(chosenResortsAirportArr)];
+  // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
 
   const homeAirportCode = airport.substring(
     airport.length - 4,
@@ -47,14 +48,25 @@ const TripInfoSum = () => {
     if (item !== undefined) {
       item = weatherData.daily[daysDepartureTimeDiff].humidity;
     }
+
     console.log(
-      `chosen day ${departureDate} humidity for testing is: ${JSON.stringify(
+      `1. chosen day ${departureDate} humidity for testing is: ${JSON.stringify(
         item,
       )}`,
     );
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
-    let flight = flightData;
-    console.log("flightData response is: ", flight);
+    let flightDest = flightData.Places;
+    let flightPrice = flightData.Quotes;
+    // if (flightDest !== undefined && flightPrice !== undefined) {
+    // flightDest = flightData.Places
+    console.log("2. flight Destination is: ", flightDest);
+    console.log("3. flight Price is: ", flightPrice);
+
+    setCountEffect(countEffect + 1);
+    console.log(
+      `---------useEffect triggered ${countEffect} times-------------`,
+    );
+    // }
   }, [departureDate, weatherData, flightData]);
 
   // handler used to trigger api fetch with necessary data
@@ -76,12 +88,11 @@ const TripInfoSum = () => {
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
       fetchWeatherData({ lat, lon });
-    }
 
-    //fetch flight data base on the user location, selected resorts, and dates.
-    for (let j = 0; j < uniqueAirports.length; j++) {
+      //fetch flight data base on the user location, selected resorts, and dates.
       const originplace = homeAirportCode;
-      const destinationplace = uniqueAirports[j];
+      const destinationplace = chosenResortsAirportArr[i];
+      console.log("destinationplace is: ", destinationplace);
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
