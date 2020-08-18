@@ -61,20 +61,27 @@ const TripInfoSum = () => {
   const chosenResortsCordsArr = selectedMW
     .concat(selectedRockies)
     .map((x) => x.value);
-
   //fetch flight data base on resorts' selections.
   const chosenResortsAirportArr = selectedMW
     .concat(selectedRockies)
     .map((x) => x.airport);
 
-  //find the unique items in the string.
-  // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
+  //"Zip" two arrays into one array of objects. so I can iterate through each object.
+  // https://stackoverflow.com/questions/50741594/how-to-combine-two-arrays-into-an-array-of-objects-in-javascript
+  const tripObjects = chosenResortsCordsArr.map((x, i) => {
+    return { ResortCords: x, Airport: chosenResortsAirportArr[i] };
+  });
+
+  console.log("tripObjects is: ", tripObjects);
 
   //extract airport code from string.
   const homeAirportCode = airport.substring(
     airport.length - 4,
     airport.length - 1,
   );
+
+  //find the unique items in the string.
+  // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
 
   // handler used to trigger api fetch with necessary data
   const handleFetchData = () => {
