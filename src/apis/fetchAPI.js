@@ -11,6 +11,7 @@ const fetchWeather = async ({ lat, lon }) => {
   // const url = "https://jsonplaceholder.typicode.com/posts"; //for testing in case of infinite loop
   const response = await fetch(weatherURL);
   const weatherJsonResponse = await response.json();
+  // console.log("fetchAPI weatherJsonResponse is: ", weatherJsonResponse);
 
   return weatherJsonResponse;
 };

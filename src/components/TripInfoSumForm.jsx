@@ -33,6 +33,7 @@ const TripInfoSum = () => {
     );
     // fetch the chosen day's weather conditon.
     let item = weatherData.daily;
+    let latCords = weatherData.lat;
     if (item !== undefined) {
       item = weatherData.daily[daysDepartureTimeDiff].humidity;
     }
@@ -43,7 +44,7 @@ const TripInfoSum = () => {
     );
 
     console.log(
-      `1. chosen day ${departureDate} humidity for testing is: ${JSON.stringify(
+      `1. chosen resort latitude ${latCords}, humidity for testing is: ${JSON.stringify(
         item,
       )}`,
     );
@@ -92,7 +93,6 @@ const TripInfoSum = () => {
 
     for (let i = 0; i < tripObjectsArr.length; i++) {
       const chosenResortsCords = tripObjectsArr[i].ResortCords;
-      // console.log("chosenResortsCords is: ", chosenResortsCords);
 
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
