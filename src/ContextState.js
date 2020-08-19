@@ -1,5 +1,8 @@
 import React, { createContext, useState } from "react";
-import { fetchWeather, fetchFlight } from "./apis/fetchAPI";
+import {
+  // fetchWeather, fetchFlight,
+  fetchBoth,
+} from "./apis/fetchAPI";
 
 const defaultState = {
   // Airport Selection
@@ -21,12 +24,15 @@ const defaultState = {
 
   arrivalDate: "",
   setArrivalDate: () => {},
-  // Weather Data
-  fetchWeatherData: () => {},
-  weatherData: {},
-  // Flight Data
-  fetchFlightData: () => {},
-  flightData: {},
+  // // Weather Data
+  // fetchWeatherData: () => {},
+  // weatherData: {},
+  // // Flight Data
+  // fetchFlightData: () => {},
+  // flightData: {},
+
+  fetchBoth: () => {},
+  bothData: {},
 };
 
 export const Context = createContext(defaultState);
@@ -39,22 +45,29 @@ export const InfoProvider = ({ children }) => {
   const [num, setNum] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [weatherData, setWeatherData] = useState("");
-  const [flightData, setFlightData] = useState("");
+  // const [weatherData, setWeatherData] = useState("");
+  // const [flightData, setFlightData] = useState("");
+  const [bothData, setBothData] = useState({ weather: null, flight: null });
 
-  const fetchWeatherData = async (args) => {
-    const weatherData = await fetchWeather(args);
-    // console.log("ContextState fetchweatherData is: ", weatherData);
+  const fetchBoth = async (args) => {
+    const bothData = await fetchBoth(args);
 
-    setWeatherData(weatherData);
+    setBothData(bothData);
   };
 
-  const fetchFlightData = async (args) => {
-    const flightData = await fetchFlight(args);
-    // console.log("ContextState fetchFlightData is: ", flightData);
+  // const fetchWeatherData = async (args) => {
+  //   const weatherData = await fetchWeather(args);
+  //   // console.log("ContextState fetchweatherData is: ", weatherData);
 
-    setFlightData(flightData);
-  };
+  //   setWeatherData(weatherData);
+  // };
+
+  // const fetchFlightData = async (args) => {
+  //   const flightData = await fetchFlight(args);
+  //   // console.log("ContextState fetchFlightData is: ", flightData);
+
+  //   setFlightData(flightData);
+  // };
 
   const value = {
     // Airport Selection
@@ -79,11 +92,14 @@ export const InfoProvider = ({ children }) => {
     returnDate,
     setReturnDate,
 
-    weatherData,
-    fetchWeatherData,
+    // weatherData,
+    // fetchWeatherData,
 
-    flightData,
-    fetchFlightData,
+    // flightData,
+    // fetchFlightData,
+
+    bothData,
+    fetchBoth,
   };
 
   // {value} is object property value shorthand.

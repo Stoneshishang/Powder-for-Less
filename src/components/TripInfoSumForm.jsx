@@ -11,10 +11,12 @@ const TripInfoSum = () => {
     num,
     departureDate,
     returnDate,
-    weatherData,
-    fetchWeatherData,
-    flightData,
-    fetchFlightData,
+    // weatherData,
+    // fetchWeatherData,
+    // flightData,
+    // fetchFlightData,
+    bothData,
+    fetchBoth,
   } = useContext(Context);
 
   const [count, setCount] = useState(0);
@@ -96,7 +98,7 @@ const TripInfoSum = () => {
 
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
-      fetchWeatherData({ lat, lon });
+      // fetchWeatherData({ lat, lon });
 
       //fetch flight data base on the user location, selected resorts, and dates.
       const originplace = homeAirportCode;
@@ -106,12 +108,12 @@ const TripInfoSum = () => {
       const inboundpartialdate = returnDate;
 
       if (originplace !== destinationplace) {
-        fetchFlightData({
-          originplace,
-          destinationplace,
-          outboundpartialdate,
-          inboundpartialdate,
-        });
+        // fetchFlightData({
+        //   originplace,
+        //   destinationplace,
+        //   outboundpartialdate,
+        //   inboundpartialdate,
+        // });
       } else {
         console.log(
           "You live very close to your selected resorts, you could drive!",
