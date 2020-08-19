@@ -58,7 +58,7 @@ const TripInfoSum = () => {
     console.log("3. flight Price is: ", flightPrice);
 
     // }
-  }, [departureDate, weatherData, flightData]);
+  }, [flightData]);
 
   //fetch weather data base on the resorts' cordinates.
   const chosenResortsCordsArr = selectedMW
