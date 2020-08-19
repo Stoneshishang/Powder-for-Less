@@ -58,7 +58,7 @@ const TripInfoSum = () => {
     console.log("3. flight Price is: ", flightPrice);
 
     // }
-  }, [flightData]);
+  }, [flightData, weatherData]);
 
   //fetch weather data base on the resorts' cordinates.
   const chosenResortsCordsArr = selectedMW
@@ -96,8 +96,6 @@ const TripInfoSum = () => {
 
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
-      fetchWeatherData({ lat, lon });
-
       //fetch flight data base on the user location, selected resorts, and dates.
       const originplace = homeAirportCode;
       const destinationplace = tripObjectsArr[i].Airport;
@@ -105,18 +103,34 @@ const TripInfoSum = () => {
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
-      if (originplace !== destinationplace) {
-        fetchFlightData({
+      const fetchBothData = async () => {
+        const weather = await fetchWeatherData({ lat, lon });
+        const flight = await fetchFlightData({
           originplace,
           destinationplace,
           outboundpartialdate,
           inboundpartialdate,
         });
-      } else {
-        console.log(
-          "You live very close to your selected resorts, you could drive!",
-        );
-      }
+
+        console.log("weather is: ", weather);
+        console.log("flight is: ", flight);
+      };
+
+      fetchBothData();
+
+      // fetchWeatherData({ lat, lon });
+      // if (originplace !== destinationplace) {
+      //   fetchFlightData({
+      //     originplace,
+      //     destinationplace,
+      //     outboundpartialdate,
+      //     inboundpartialdate,
+      //   });
+      // } else {
+      //   console.log(
+      //     "You live very close to your selected resorts, you could drive!",
+      //   );
+      // }
     }
   };
 

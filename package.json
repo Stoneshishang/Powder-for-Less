@@ -10,13 +10,10 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/uuid": "^8.0.0",
     "axios": "^0.19.2",
-    "formik": "^2.1.5",
-    "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-multi-select-component": "^2.0.14",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.1.1",
     "uuid": "^8.2.0"
   },
   "scripts": {
@@ -40,7 +37,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/material-ui": "^0.21.7"
-  }
+  "devDependencies": {}
 }
