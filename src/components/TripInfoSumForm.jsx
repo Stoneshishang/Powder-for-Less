@@ -34,33 +34,35 @@ const TripInfoSum = () => {
       departureTimeDiff / (1000 * 60 * 60 * 24),
     );
     // fetch the chosen day's weather conditon.
-    let item = weatherData.daily;
-    let latCords = weatherData.lat;
-    if (item !== undefined) {
-      item = weatherData.daily[daysDepartureTimeDiff].humidity;
-    }
+    // let item = weatherData.daily;
+    // let latCords = weatherData.lat;
+    // if (item !== undefined) {
+    //   item = weatherData.daily[daysDepartureTimeDiff].humidity;
+    // }
 
     setCountEffect(countEffect + 1);
     console.log(
       `---------useEffect triggered ${countEffect} times-------------`,
     );
 
-    console.log(
-      `1. chosen resort latitude ${latCords}, humidity for testing is: ${JSON.stringify(
-        item,
-      )}`,
-    );
+    console.log("bothData is: ", JSON.stringify(bothData));
+
+    // console.log(
+    //   `1. chosen resort latitude ${latCords}, humidity for testing is: ${JSON.stringify(
+    //     item,
+    //   )}`,
+    // );
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
-    let flightDest = flightData.Places;
-    let flightPrice = flightData.Quotes;
+    // let flightDest = flightData.Places;
+    // let flightPrice = flightData.Quotes;
     // if (flightDest !== undefined && flightPrice !== undefined) {
     // flightDest = flightData.Places
 
-    console.log("2. flight Destination is: ", flightDest);
-    console.log("3. flight Price is: ", flightPrice);
+    // console.log("2. flight Destination is: ", flightDest);
+    // console.log("3. flight Price is: ", flightPrice);
 
     // }
-  }, [flightData]);
+  }, [bothData]);
 
   //fetch weather data base on the resorts' cordinates.
   const chosenResortsCordsArr = selectedMW
@@ -107,18 +109,27 @@ const TripInfoSum = () => {
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
-      if (originplace !== destinationplace) {
-        // fetchFlightData({
-        //   originplace,
-        //   destinationplace,
-        //   outboundpartialdate,
-        //   inboundpartialdate,
-        // });
-      } else {
-        console.log(
-          "You live very close to your selected resorts, you could drive!",
-        );
-      }
+      fetchBoth({
+        lat,
+        lon,
+        originplace,
+        destinationplace,
+        outboundpartialdate,
+        inboundpartialdate,
+      });
+
+      // if (originplace !== destinationplace) {
+      //   // fetchFlightData({
+      //   //   originplace,
+      //   //   destinationplace,
+      //   //   outboundpartialdate,
+      //   //   inboundpartialdate,
+      //   // });
+      // } else {
+      //   console.log(
+      //     "You live very close to your selected resorts, you could drive!",
+      //   );
+      // }
     }
   };
 
