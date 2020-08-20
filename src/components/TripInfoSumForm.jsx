@@ -93,7 +93,6 @@ const TripInfoSum = () => {
 
     for (let i = 0; i < tripObjectsArr.length; i++) {
       const chosenResortsCords = tripObjectsArr[i].ResortCords;
-
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
       //fetch flight data base on the user location, selected resorts, and dates.
@@ -103,20 +102,22 @@ const TripInfoSum = () => {
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
-      const fetchBothData = async () => {
-        const weather = await fetchWeatherData({ lat, lon });
-        const flight = await fetchFlightData({
-          originplace,
-          destinationplace,
-          outboundpartialdate,
-          inboundpartialdate,
-        });
+      // const fetchBothData = async () => {
+      //   const weather = await
+      fetchWeatherData({ lat, lon });
+      // const flight = await
+      fetchFlightData({
+        originplace,
+        destinationplace,
+        outboundpartialdate,
+        inboundpartialdate,
+      });
 
-        console.log("weather is: ", weather);
-        console.log("flight is: ", flight);
-      };
+      //   console.log("weather is: ", weather);
+      //   console.log("flight is: ", flight);
+      // };
 
-      fetchBothData();
+      // fetchBothData();
 
       // fetchWeatherData({ lat, lon });
       // if (originplace !== destinationplace) {
