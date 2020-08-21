@@ -16,6 +16,7 @@ const fetchBoth = async ({
   }).toString();
 
   const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?${weatherParams}`;
+
   const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originplace}/${destinationplace}/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`;
   // const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/DTW/DEN/2020-09-01?inboundpartialdate=2020-09-08`;
 
