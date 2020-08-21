@@ -57,9 +57,8 @@ const TripInfoSum = () => {
 
     console.log("2. flight Destination is: ", flightDest);
     console.log("3. flight Price is: ", flightPrice);
-    console.log("weatherResultArr inside is: ", weatherResultArray);
     // }
-  }, [flightData, weatherData]);
+  }, [weatherData, flightData]);
 
   //fetch weather data base on the resorts' cordinates.
   const chosenResortsCordsArr = selectedMW
@@ -68,7 +67,6 @@ const TripInfoSum = () => {
 
   console.log(`chosenResortsCordsArr is: `, chosenResortsCordsArr);
   console.log("weatherResultArr outside is: ", weatherResultArray);
-  console.log("|||||||||outside useEffect ends|||||||");
   //fetch flight data base on resorts' selections.
   const chosenResortsAirportArr = selectedMW
     .concat(selectedRockies)
