@@ -20,8 +20,8 @@ const fetchBoth = async ({
   const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originplace}/${destinationplace}/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`;
   // const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/DTW/DEN/2020-09-01?inboundpartialdate=2020-09-08`;
 
-  const weather = await axios(weatherURL);
-  const flight = await axios(flightURL, {
+  const weatherData = await axios(weatherURL);
+  const flightData = await axios(flightURL, {
     method: "GET",
     headers: {
       "x-rapidapi-host":
@@ -30,7 +30,7 @@ const fetchBoth = async ({
     },
   });
 
-  return { weather: weather, flight: flight };
+  return { weather: weatherData, flight: flightData };
 
   // axios.all([
   //   axios.get(weatherURL),

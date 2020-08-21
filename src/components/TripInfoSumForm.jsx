@@ -16,7 +16,7 @@ const TripInfoSum = () => {
     // flightData,
     // fetchFlightData,
     bothData,
-    fetchBoth,
+    fetchBothData,
   } = useContext(Context);
 
   const [count, setCount] = useState(0);
@@ -45,7 +45,7 @@ const TripInfoSum = () => {
       `---------useEffect triggered ${countEffect} times-------------`,
     );
 
-    console.log("bothData is: ", JSON.stringify(bothData));
+    console.log("bothData is: ", bothData);
 
     // console.log(
     //   `1. chosen resort latitude ${latCords}, humidity for testing is: ${JSON.stringify(
@@ -109,7 +109,7 @@ const TripInfoSum = () => {
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
-      fetchBoth({
+      fetchBothData({
         lat,
         lon,
         originplace,

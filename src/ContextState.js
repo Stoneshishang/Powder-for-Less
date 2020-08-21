@@ -31,7 +31,7 @@ const defaultState = {
   // fetchFlightData: () => {},
   // flightData: {},
 
-  fetchBoth: () => {},
+  fetchBothData: () => {},
   bothData: {},
 };
 
@@ -49,7 +49,7 @@ export const InfoProvider = ({ children }) => {
   // const [flightData, setFlightData] = useState("");
   const [bothData, setBothData] = useState({ weather: null, flight: null });
 
-  const fetchBoth = async (args) => {
+  const fetchBothData = async (args) => {
     const bothData = await fetchBoth(args);
 
     setBothData(bothData);
@@ -99,7 +99,7 @@ export const InfoProvider = ({ children }) => {
     // fetchFlightData,
 
     bothData,
-    fetchBoth,
+    fetchBothData,
   };
 
   // {value} is object property value shorthand.
