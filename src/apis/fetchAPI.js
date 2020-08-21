@@ -29,17 +29,6 @@ const fetchBoth = async ({
     },
   });
 
-  // Promise.all([fetch(weatherURL), fetch(flightURL)])
-  //   .then(async ([weatherData, flightData]) => {
-  //     const weather = await weatherData.json();
-  //     const flight = await flightData.json();
-  //     console.log("weather is: ", weather);
-  //     console.log("flight is: ", flight);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
   return { weather: weather, flight: flight };
 
   // axios.all([
