@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-
+import React, { useContext, useEffect, useState, useRef } from "react";
+// import _ from "lodash";
 import { Context } from "../ContextState";
 
 const TripInfoSum = () => {
@@ -19,6 +19,7 @@ const TripInfoSum = () => {
 
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
+  const weatherResultArray = useRef([]);
 
   // update selected date item
   useEffect(() => {
@@ -36,8 +37,8 @@ const TripInfoSum = () => {
     let latCords = weatherData.lat;
     if (item !== undefined) {
       item = weatherData.daily[daysDepartureTimeDiff].humidity;
+      weatherResultArray.current.push(item);
     }
-
     setCountEffect(countEffect + 1);
     console.log(
       `---------useEffect triggered ${countEffect} times-------------`,
@@ -56,7 +57,7 @@ const TripInfoSum = () => {
 
     console.log("2. flight Destination is: ", flightDest);
     console.log("3. flight Price is: ", flightPrice);
-
+    console.log("weatherResultArr inside is: ", weatherResultArray);
     // }
   }, [flightData, weatherData]);
 
@@ -64,6 +65,10 @@ const TripInfoSum = () => {
   const chosenResortsCordsArr = selectedMW
     .concat(selectedRockies)
     .map((x) => x.value);
+
+  console.log(`chosenResortsCordsArr is: `, chosenResortsCordsArr);
+  console.log("weatherResultArr outside is: ", weatherResultArray);
+  console.log("|||||||||outside useEffect ends|||||||");
   //fetch flight data base on resorts' selections.
   const chosenResortsAirportArr = selectedMW
     .concat(selectedRockies)
@@ -80,6 +85,17 @@ const TripInfoSum = () => {
     airport.length - 4,
     airport.length - 1,
   );
+
+  // console.log("latCords is: ", latCords);
+
+  // const latArr = chosenResortsCordsArr.map((x) => _.round(x.lat, 2)); // use lodash to round it.
+
+  // console.log("latArr is: ", latArr);
+
+  // //storing API results for display.
+  // const identifyResorts = latArr.indexOf(latCords);
+
+  // console.log("identifyResorts is: ", identifyResorts);
 
   //find the unique items in the string.
   // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
@@ -102,22 +118,13 @@ const TripInfoSum = () => {
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
-      // const fetchBothData = async () => {
-      //   const weather = await
       fetchWeatherData({ lat, lon });
-      // const flight = await
       fetchFlightData({
         originplace,
         destinationplace,
         outboundpartialdate,
         inboundpartialdate,
       });
-
-      //   console.log("weather is: ", weather);
-      //   console.log("flight is: ", flight);
-      // };
-
-      // fetchBothData();
 
       // fetchWeatherData({ lat, lon });
       // if (originplace !== destinationplace) {
