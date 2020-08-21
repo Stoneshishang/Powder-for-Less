@@ -20,6 +20,7 @@ const TripInfoSum = () => {
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
   const weatherResultArray = useRef([]);
+  const flightReasultArray = useRef([]);
 
   // update selected date item
   useEffect(() => {
@@ -52,6 +53,8 @@ const TripInfoSum = () => {
     // console.log("departure time diff is: ", daysDepartureTimeDiff);
     let flightDest = flightData.Places;
     let flightPrice = flightData.Quotes;
+
+    flightReasultArray.current.push(flightPrice);
     // if (flightDest !== undefined && flightPrice !== undefined) {
     // flightDest = flightData.Places
 
@@ -67,6 +70,7 @@ const TripInfoSum = () => {
 
   console.log(`chosenResortsCordsArr is: `, chosenResortsCordsArr);
   console.log("weatherResultArr outside is: ", weatherResultArray);
+  console.log("flightReasultArray outside is: ", flightReasultArray);
   //fetch flight data base on resorts' selections.
   const chosenResortsAirportArr = selectedMW
     .concat(selectedRockies)
