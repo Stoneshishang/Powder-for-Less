@@ -24,15 +24,9 @@ const defaultState = {
 
   arrivalDate: "",
   setArrivalDate: () => {},
-  // // Weather Data
-  // fetchWeatherData: () => {},
-  // weatherData: {},
-  // // Flight Data
-  // fetchFlightData: () => {},
-  // flightData: {},
 
-  fetchBothData: () => {},
   bothData: {},
+  fetchBothData: () => {},
 };
 
 export const Context = createContext(defaultState);
@@ -45,29 +39,14 @@ export const InfoProvider = ({ children }) => {
   const [num, setNum] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  // const [weatherData, setWeatherData] = useState("");
-  // const [flightData, setFlightData] = useState("");
   const [bothData, setBothData] = useState({ weather: null, flight: null });
 
+  // fetchBothData is where the Data is actually fetched and set to the Context.
   const fetchBothData = async (args) => {
     const bothData = await fetchBoth(args);
 
     setBothData(bothData);
   };
-
-  // const fetchWeatherData = async (args) => {
-  //   const weatherData = await fetchWeather(args);
-  //   // console.log("ContextState fetchweatherData is: ", weatherData);
-
-  //   setWeatherData(weatherData);
-  // };
-
-  // const fetchFlightData = async (args) => {
-  //   const flightData = await fetchFlight(args);
-  //   // console.log("ContextState fetchFlightData is: ", flightData);
-
-  //   setFlightData(flightData);
-  // };
 
   const value = {
     // Airport Selection

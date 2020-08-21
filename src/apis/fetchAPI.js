@@ -1,6 +1,7 @@
 import { weatherAPIkey as appid, flightAPIkey } from "./apiKeys";
 import axios from "axios";
 
+//fetchBoth is the function that fetch both API
 const fetchBoth = async ({
   lat,
   lon,
