@@ -11,10 +11,6 @@ const TripInfoSum = () => {
     num,
     departureDate,
     returnDate,
-    // weatherData,
-    // fetchWeatherData,
-    // flightData,
-    // fetchFlightData,
     bothData,
     fetchBothData,
   } = useContext(Context);
@@ -30,9 +26,13 @@ const TripInfoSum = () => {
     const yyyy = today.getFullYear();
     const currentDate = yyyy + "-" + mm + "-" + dd;
     const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
+    const returnTimeDiff = new Date(returnDate) - new Date(currentDate);
     const daysDepartureTimeDiff = Number(
       departureTimeDiff / (1000 * 60 * 60 * 24),
     );
+
+    const daysReturnTimeDiff = Number(returnTimeDiff / (1000 * 60 * 60 * 24));
+
     // fetch the chosen day's weather conditon.
     // let item = weatherData.daily;
     // let latCords = weatherData.lat;
@@ -46,6 +46,25 @@ const TripInfoSum = () => {
     );
 
     console.log("bothData is: ", bothData);
+
+    const weather = bothData.weather;
+    if (weather !== null) {
+      const { daily: dailyWeatherInfo } = weather.data;
+
+      const tripDuationWeather = dailyWeatherInfo.slice(
+        daysDepartureTimeDiff,
+        daysReturnTimeDiff,
+      );
+
+      const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
+
+      const tripSnowSum = tripDurationSnowArr.reduce(function (s, v) {
+        return s + (v || 0);
+      }, 0);
+
+      console.log("tripDurationSnowis: ", tripDurationSnowArr);
+      console.log("tripSnowSum is: ", tripSnowSum);
+    }
 
     // console.log(
     //   `1. chosen resort latitude ${latCords}, humidity for testing is: ${JSON.stringify(
@@ -97,10 +116,10 @@ const TripInfoSum = () => {
 
     for (let i = 0; i < tripObjectsArr.length; i++) {
       const chosenResortsCords = tripObjectsArr[i].ResortCords;
+      console.log("chosenResortCords is: ", chosenResortsCords);
 
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
-      // fetchWeatherData({ lat, lon });
 
       //fetch flight data base on the user location, selected resorts, and dates.
       const originplace = homeAirportCode;

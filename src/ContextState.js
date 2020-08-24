@@ -71,12 +71,6 @@ export const InfoProvider = ({ children }) => {
     returnDate,
     setReturnDate,
 
-    // weatherData,
-    // fetchWeatherData,
-
-    // flightData,
-    // fetchFlightData,
-
     bothData,
     fetchBothData,
   };

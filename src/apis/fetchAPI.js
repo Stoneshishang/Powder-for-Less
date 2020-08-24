@@ -19,7 +19,6 @@ const fetchBoth = async ({
   const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?${weatherParams}`;
 
   const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originplace}/${destinationplace}/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`;
-  // const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/DTW/DEN/2020-09-01?inboundpartialdate=2020-09-08`;
 
   const weatherData = await axios(weatherURL);
   const flightData = await axios(flightURL, {
@@ -32,24 +31,6 @@ const fetchBoth = async ({
   });
 
   return { weather: weatherData, flight: flightData };
-
-  // axios.all([
-  //   axios.get(weatherURL),
-  //   axios.get(flightURL, {
-  //     method: "GET",
-  //     headers: {
-  //       "x-rapidapi-host":
-  //         "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-  //       "x-rapidapi-key": flightAPIkey,
-  //     },
-  //   })
-  // ])
-  // .then(axios.spread((weather,flight)=>{
-  //   console.log('weather is: ', weather);
-  //   console.log('flight is: ', flight);
-  // }))
 };
-
-// export { fetchWeather, fetchFlight };
 
 export { fetchBoth };
