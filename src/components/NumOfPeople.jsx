@@ -16,7 +16,7 @@ const NumOfPeople = () => {
             // required
           />
           {/* {console.log("Context.Consumer num is: ", num)} */}
-          <pre>input Num is {JSON.stringify(num)}</pre>
+          {/* <pre>input Num is {JSON.stringify(num)}</pre> */}
         </div>
       )}
     </Context.Consumer>

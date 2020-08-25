@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import SumTable from "./SumTable";
 import { Context } from "../ContextState";
 
 const TripInfoSum = () => {
@@ -8,12 +8,15 @@ const TripInfoSum = () => {
     selectedMW,
     selectedRockies,
     selectedSierra,
-    num,
+    // num,
     departureDate,
     returnDate,
     bothData,
     fetchBothData,
   } = useContext(Context);
+
+  const [sumTableWeatherInfo, setSumTableWeatherInfo] = useState();
+  const [sumTableFlightInfo, setSumTableFlightInfo] = useState();
 
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
@@ -33,13 +36,6 @@ const TripInfoSum = () => {
 
     const daysReturnTimeDiff = Number(returnTimeDiff / (1000 * 60 * 60 * 24));
 
-    // fetch the chosen day's weather conditon.
-    // let item = weatherData.daily;
-    // let latCords = weatherData.lat;
-    // if (item !== undefined) {
-    //   item = weatherData.daily[daysDepartureTimeDiff].humidity;
-    // }
-
     setCountEffect(countEffect + 1);
     console.log(
       `---------useEffect triggered ${countEffect} times-------------`,
@@ -55,32 +51,23 @@ const TripInfoSum = () => {
         daysDepartureTimeDiff,
         daysReturnTimeDiff,
       );
-
       const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
-
-      const tripSnowSum = tripDurationSnowArr.reduce(function (s, v) {
+      const tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
         return s + (v || 0);
       }, 0);
 
       console.log("tripDurationSnowis: ", tripDurationSnowArr);
       console.log("tripSnowSum is: ", tripSnowSum);
+
+      setSumTableWeatherInfo(tripSnowSum);
     }
 
-    // console.log(
-    //   `1. chosen resort latitude ${latCords}, humidity for testing is: ${JSON.stringify(
-    //     item,
-    //   )}`,
-    // );
-    // console.log("departure time diff is: ", daysDepartureTimeDiff);
-    // let flightDest = flightData.Places;
-    // let flightPrice = flightData.Quotes;
-    // if (flightDest !== undefined && flightPrice !== undefined) {
-    // flightDest = flightData.Places
+    const flight = bothData.flight;
+    if (flight !== null) {
+      const { Quotes } = flight.data;
 
-    // console.log("2. flight Destination is: ", flightDest);
-    // console.log("3. flight Price is: ", flightPrice);
-
-    // }
+      setSumTableFlightInfo(JSON.stringify(Quotes));
+    }
   }, [bothData]);
 
   //fetch weather data base on the resorts' cordinates.
@@ -116,7 +103,7 @@ const TripInfoSum = () => {
 
     for (let i = 0; i < tripObjectsArr.length; i++) {
       const chosenResortsCords = tripObjectsArr[i].ResortCords;
-      console.log("chosenResortCords is: ", chosenResortsCords);
+      // console.log("chosenResortCords is: ", chosenResortsCords);
 
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
@@ -128,33 +115,24 @@ const TripInfoSum = () => {
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
-      fetchBothData({
-        lat,
-        lon,
-        originplace,
-        destinationplace,
-        outboundpartialdate,
-        inboundpartialdate,
-      });
-
-      // if (originplace !== destinationplace) {
-      //   // fetchFlightData({
-      //   //   originplace,
-      //   //   destinationplace,
-      //   //   outboundpartialdate,
-      //   //   inboundpartialdate,
-      //   // });
-      // } else {
-      //   console.log(
-      //     "You live very close to your selected resorts, you could drive!",
-      //   );
-      // }
+      if (originplace !== destinationplace) {
+        fetchBothData({
+          lat,
+          lon,
+          originplace,
+          destinationplace,
+          outboundpartialdate,
+          inboundpartialdate,
+        });
+      } else {
+        console.log("Drive is better!");
+      }
     }
   };
 
   return (
     <div>
-      <pre>
+      {/* <pre>
         TripInfoSum selected MW resorts are {JSON.stringify(selectedMW)}
       </pre>
       <pre>
@@ -168,13 +146,13 @@ const TripInfoSum = () => {
 
       <pre>TripInfoSum departure Date is {JSON.stringify(departureDate)}</pre>
 
-      <pre>TripInfoSum return Date is {JSON.stringify(returnDate)}</pre>
+      <pre>TripInfoSum return Date is {JSON.stringify(returnDate)}</pre> */}
 
-      {/* <form onSubmit={submitHandler}> */}
-
-      <button onClick={handleFetchData}>Click me</button>
-
-      {/* </form> */}
+      <button onClick={handleFetchData}>Find Trips!</button>
+      <SumTable
+        onSumWeatherInfo={sumTableWeatherInfo}
+        onSumFlightInfo={sumTableFlightInfo}
+      />
     </div>
   );
 };

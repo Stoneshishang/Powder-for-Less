@@ -21,10 +21,13 @@ const App = () => {
         <Header />
         <ResortsSelection />
         <label>Home Airport:</label>
-        <AutoComplete name="autocomplete-airport" items={airports} />
+        <AutoComplete
+          name="autocomplete-airport"
+          items={airports}
+          required="required"
+        />
         <NumOfPeople />
-        <Dates />
-        {/* <FindTripInfoButton /> */}
+        <Dates required="required" />
         <TripInfoSumForm />
         {/* <Footer /> */}
       </div>
