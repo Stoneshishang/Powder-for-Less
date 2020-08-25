@@ -3,7 +3,12 @@ import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const SumTable = (props) => {
-  console.log("SumTable props.SumInfo is: ", props.sumInfo);
+  if (props.onSumFlightInfo !== undefined) {
+    console.log("SumTable props.SumWeatherInfo is: ", props.onSumWeatherInfo);
+    const flightInfoObj = JSON.parse(props.onSumFlightInfo);
+    console.log("SumTable props.SumFlightInfo is: ", flightInfoObj);
+  }
+
   return (
     <div>
       <pre>props.sumWeatherInfo is: {props.onSumWeatherInfo}</pre>
