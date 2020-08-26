@@ -13,13 +13,13 @@ const TripInfoSum = () => {
     returnDate,
     bothData,
     fetchBothData,
+
+    weatherData,
+    setWeatherData,
   } = useContext(Context);
 
-  const [sumTableWeatherInfo, setSumTableWeatherInfo] = useState();
-  const [sumTableFlightInfo, setSumTableFlightInfo] = useState();
-  const weatherResultArray = useRef([]);
-  const flightReasultArray = useRef([]);
-  const tripObjArr = useRef([]);
+  // const [sumTableWeatherInfo, setSumTableWeatherInfo] = useState();
+  // const [sumTableFlightInfo, setSumTableFlightInfo] = useState();
 
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
@@ -41,7 +41,7 @@ const TripInfoSum = () => {
 
     setCountEffect(countEffect + 1);
     console.log(
-      `---------useEffect triggered ${countEffect} times-------------`,
+      `----------------------useEffect triggered ${countEffect} times------------------------`,
     );
 
     console.log("   bothData is: ", bothData);
@@ -62,19 +62,14 @@ const TripInfoSum = () => {
       // console.log("   tripDurationSnowis: ", tripDurationSnowArr);
       console.log("   tripSnowSum is: ", tripSnowSum);
 
-      setSumTableWeatherInfo(tripSnowSum);
-
-      weatherResultArray.current.push(tripSnowSum);
-      console.log("   weatherResultArray is: ", weatherResultArray.current);
+      setWeatherData(tripSnowSum);
     }
 
     const flight = bothData.flight;
     if (flight !== null) {
       const { Quotes } = flight.data;
 
-      setSumTableFlightInfo(JSON.stringify(Quotes));
-      flightReasultArray.current.push(Quotes);
-      console.log("   flightResultArray is: ", flightReasultArray.current);
+      // setSumTableFlightInfo(JSON.stringify(Quotes));
     }
   }, [bothData]);
 
@@ -145,8 +140,8 @@ const TripInfoSum = () => {
       </pre>
       <pre>
         TirpInfoSum Rockies resorts are {JSON.stringify(selectedRockies)}
-      </pre>
-      <pre>TirpInfoSum Sierra resorts are {JSON.stringify(selectedSierra)}</pre>
+      </pre> */}
+      {/* <pre>TirpInfoSum Sierra resorts are {JSON.stringify(selectedSierra)}</pre>
       <pre>TripInfoSum home airpot is {JSON.stringify(airport)}</pre>
       <pre>TripInfoSum Number of Traveler is {JSON.stringify(num)}</pre>
       <pre>TripInfoSum departure Date is {JSON.stringify(departureDate)}</pre>
@@ -154,8 +149,8 @@ const TripInfoSum = () => {
 
       <button onClick={handleFetchData}>Find Trips!</button>
       <SumTable
-        onSumWeatherInfo={sumTableWeatherInfo}
-        onSumFlightInfo={sumTableFlightInfo}
+        onSumWeatherInfo={weatherData}
+        // onSumFlightInfo={sumTableFlightInfo}
       />
     </div>
   );
