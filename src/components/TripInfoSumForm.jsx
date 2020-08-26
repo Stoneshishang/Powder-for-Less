@@ -15,8 +15,8 @@ const TripInfoSum = () => {
     bothData,
     fetchBothData,
 
-    weatherData,
-    setWeatherData,
+    sumTableData,
+    setSumTableData,
   } = useContext(Context);
 
   // const [sumTableWeatherInfo, setSumTableWeatherInfo] = useState();
@@ -90,27 +90,22 @@ const TripInfoSum = () => {
 
       console.log("   tripSnowSum is: ", tripSnowSum);
 
-      setWeatherData(tripSnowSum);
-
+      //Match response Data with corresponding resort
       const dataIDObj = chosenResortsObjArr.filter((obj) => {
         return _.round(obj.value.lat, 2) === weatherLocationInfo;
       });
 
       dataID = dataIDObj.map((id) => id.label);
-
-      // console.log("dataID is: ", dataID);
     }
 
     const flight = bothData.flight;
     if (flight !== null) {
       const { Quotes } = flight.data;
 
-      // setSumTableFlightInfo(JSON.stringify(Quotes));
+      console.log("Quotes is: ", Quotes);
     }
 
     console.log(`${dataID} has the bothData of: `, bothData);
-
-    // console.log("   bothData is: ", bothData);
   }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
@@ -165,8 +160,8 @@ const TripInfoSum = () => {
 
       <button onClick={handleFetchData}>Find Trips!</button>
       <SumTable
-        onSumWeatherInfo={weatherData}
-        // onSumFlightInfo={sumTableFlightInfo}
+      // onSumWeatherInfo={weatherData}
+      // onSumFlightInfo={sumTableFlightInfo}
       />
     </div>
   );
