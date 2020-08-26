@@ -12,6 +12,14 @@ const SumTable = (props) => {
   //   console.log("   SumTable props.SumFlightInfo is: ", flightInfoObj);
   // }
 
+  const renderTable = (weather, flight, index) => {
+    return (
+      <tr key={index}>
+        <td></td>
+      </tr>
+    );
+  };
+
   return (
     <div>
       <pre>props.sumWeatherInfo is: {props.onSumWeatherInfo}</pre>
@@ -26,25 +34,7 @@ const SumTable = (props) => {
             <th>Flight ($)</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </Table>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import SumTable from "./SumTable";
 import { Context } from "../ContextState";
+import _ from "lodash";
 
 const TripInfoSum = () => {
   const {
@@ -24,54 +25,8 @@ const TripInfoSum = () => {
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
 
-  // update selected date item
-  useEffect(() => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    const yyyy = today.getFullYear();
-    const currentDate = yyyy + "-" + mm + "-" + dd;
-    const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
-    const returnTimeDiff = new Date(returnDate) - new Date(currentDate);
-    const daysDepartureTimeDiff = Number(
-      departureTimeDiff / (1000 * 60 * 60 * 24),
-    );
-
-    const daysReturnTimeDiff = Number(returnTimeDiff / (1000 * 60 * 60 * 24));
-
-    setCountEffect(countEffect + 1);
-    console.log(
-      `----------------------useEffect triggered ${countEffect} times------------------------`,
-    );
-
-    console.log("   bothData is: ", bothData);
-
-    const weather = bothData.weather;
-    if (weather !== null) {
-      const { daily: dailyWeatherInfo } = weather.data;
-
-      const tripDuationWeather = dailyWeatherInfo.slice(
-        daysDepartureTimeDiff,
-        daysReturnTimeDiff,
-      );
-      const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
-      const tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
-        return s + (v || 0);
-      }, 0);
-
-      // console.log("   tripDurationSnowis: ", tripDurationSnowArr);
-      console.log("   tripSnowSum is: ", tripSnowSum);
-
-      setWeatherData(tripSnowSum);
-    }
-
-    const flight = bothData.flight;
-    if (flight !== null) {
-      const { Quotes } = flight.data;
-
-      // setSumTableFlightInfo(JSON.stringify(Quotes));
-    }
-  }, [bothData]);
+  const chosenResortsObjArr = selectedMW.concat(selectedRockies);
+  // console.log("   choseResortsObjArr is: ", chosenResortsObjArr);
 
   //fetch weather data base on the resorts' cordinates.
   const chosenResortsCordsArr = selectedMW
@@ -96,6 +51,67 @@ const TripInfoSum = () => {
 
   //find the unique items in the string.
   // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
+
+  // update selected date item
+  useEffect(() => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    const currentDate = yyyy + "-" + mm + "-" + dd;
+    const departureTimeDiff = new Date(departureDate) - new Date(currentDate);
+    const returnTimeDiff = new Date(returnDate) - new Date(currentDate);
+    const daysDepartureTimeDiff = Number(
+      departureTimeDiff / (1000 * 60 * 60 * 24),
+    );
+
+    const daysReturnTimeDiff = Number(returnTimeDiff / (1000 * 60 * 60 * 24));
+
+    setCountEffect(countEffect + 1);
+    console.log(
+      `----------------------useEffect triggered ${countEffect} times------------------------`,
+    );
+
+    const weather = bothData.weather;
+    let dataID = "";
+    if (weather !== null) {
+      const { daily: dailyWeatherInfo } = weather.data;
+
+      const { lat: weatherLocationInfo } = weather.data;
+
+      const tripDuationWeather = dailyWeatherInfo.slice(
+        daysDepartureTimeDiff,
+        daysReturnTimeDiff,
+      );
+      const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
+      const tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
+        return s + (v || 0);
+      }, 0);
+
+      console.log("   tripSnowSum is: ", tripSnowSum);
+
+      setWeatherData(tripSnowSum);
+
+      const dataIDObj = chosenResortsObjArr.filter((obj) => {
+        return _.round(obj.value.lat, 2) === weatherLocationInfo;
+      });
+
+      dataID = dataIDObj.map((id) => id.label);
+
+      // console.log("dataID is: ", dataID);
+    }
+
+    const flight = bothData.flight;
+    if (flight !== null) {
+      const { Quotes } = flight.data;
+
+      // setSumTableFlightInfo(JSON.stringify(Quotes));
+    }
+
+    console.log(`${dataID} has the bothData of: `, bothData);
+
+    // console.log("   bothData is: ", bothData);
+  }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
   const handleFetchData = () => {
