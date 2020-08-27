@@ -12,6 +12,7 @@ const TripInfoSum = () => {
     // num,
     departureDate,
     returnDate,
+
     bothData,
     fetchBothData,
 
@@ -100,8 +101,8 @@ const TripInfoSum = () => {
     }
 
     const flight = bothData.flight;
-    let direct = true;
-    let minPrice = null;
+    let direct = [];
+    let minPrice = [];
     if (flight !== null) {
       const { Quotes } = flight.data;
 
@@ -115,15 +116,21 @@ const TripInfoSum = () => {
     console.log("Direct is: ", direct);
     console.log("MinPrice is: ", minPrice);
 
+    const flightRoute = {};
+
+    direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
+
+    console.log("flightRoute is: ", flightRoute);
+
     const gatherSumTableData = {
       resort: dataID,
       weather: tripSnowSum,
-      flight: { direct: direct, minPrice: minPrice },
+      flight: flightRoute,
     };
 
     console.log("gatherSumTableData is: ", gatherSumTableData);
 
-    setSumTableData(gatherSumTableData);
+    // setSumTableData(gatherSumTableData);
 
     console.log(`${dataID} has the bothData of: `, bothData);
 
