@@ -44,9 +44,9 @@ export const InfoProvider = ({ children }) => {
   const [returnDate, setReturnDate] = useState("");
   const [bothData, setBothData] = useState({ weather: null, flight: null });
   const [sumTableData, setSumTableData] = useState({
-    resort: null,
-    weather: null,
-    flight: null,
+    resort: "",
+    weather: 0,
+    flight: {},
   });
 
   // fetchBothData is where the Data is actually fetched and set to the Context.

@@ -54,6 +54,8 @@ const TripInfoSum = () => {
   // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
 
   // update selected date item
+  let gatherSumTableData = {};
+
   useEffect(() => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, "0");
@@ -114,7 +116,7 @@ const TripInfoSum = () => {
     const flightRoute = {};
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
 
-    const gatherSumTableData = {
+    gatherSumTableData = {
       resort: dataID,
       weather: tripSnowSum,
       flight: flightRoute,
@@ -123,8 +125,6 @@ const TripInfoSum = () => {
     console.log(`${dataID} gatherSumTableData is: `, gatherSumTableData);
 
     setSumTableData(gatherSumTableData);
-
-    console.log("sumTableData is: ", sumTableData);
   }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
@@ -178,10 +178,7 @@ const TripInfoSum = () => {
       <pre>TripInfoSum return Date is {JSON.stringify(returnDate)}</pre> */}
 
       <button onClick={handleFetchData}>Find Trips!</button>
-      <SumTable
-      // onSumWeatherInfo={weatherData}
-      // onSumFlightInfo={sumTableFlightInfo}
-      />
+      <SumTable />
     </div>
   );
 };
