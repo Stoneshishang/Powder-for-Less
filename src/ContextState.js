@@ -28,8 +28,8 @@ const defaultState = {
   bothData: {},
   fetchBothData: () => {},
 
-  weatherData: {},
-  setWeatherData: () => {},
+  sumTableData: {},
+  setSumTableData: () => {},
 };
 
 export const Context = createContext(defaultState);
@@ -43,7 +43,11 @@ export const InfoProvider = ({ children }) => {
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [bothData, setBothData] = useState({ weather: null, flight: null });
-  const [weatherData, setWeatherData] = useState([]);
+  const [sumTableData, setSumTableData] = useState({
+    resort: null,
+    weather: null,
+    flight: null,
+  });
 
   // fetchBothData is where the Data is actually fetched and set to the Context.
   const fetchBothData = async (args) => {
@@ -78,8 +82,8 @@ export const InfoProvider = ({ children }) => {
     bothData,
     fetchBothData,
 
-    weatherData,
-    setWeatherData,
+    sumTableData,
+    setSumTableData,
   };
 
   // {value} is object property value shorthand.

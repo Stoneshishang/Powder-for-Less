@@ -105,22 +105,14 @@ const TripInfoSum = () => {
     let minPrice = [];
     if (flight !== null) {
       const { Quotes } = flight.data;
-
       direct = Quotes.map((x) => x.Direct);
-
       minPrice = Quotes.map((x) => x.MinPrice);
-
       console.log("Quotes is: ", Quotes);
     }
 
-    console.log("Direct is: ", direct);
-    console.log("MinPrice is: ", minPrice);
-
+    //merge two array into an object.
     const flightRoute = {};
-
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
-
-    console.log("flightRoute is: ", flightRoute);
 
     const gatherSumTableData = {
       resort: dataID,
@@ -128,11 +120,9 @@ const TripInfoSum = () => {
       flight: flightRoute,
     };
 
-    console.log("gatherSumTableData is: ", gatherSumTableData);
+    console.log(`${dataID} gatherSumTableData is: `, gatherSumTableData);
 
-    // setSumTableData(gatherSumTableData);
-
-    console.log(`${dataID} has the bothData of: `, bothData);
+    setSumTableData(gatherSumTableData);
 
     console.log("sumTableData is: ", sumTableData);
   }, [bothData]);
