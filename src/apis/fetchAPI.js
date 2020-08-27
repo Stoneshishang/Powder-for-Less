@@ -1,6 +1,15 @@
 import { weatherAPIkey as appid, flightAPIkey } from "./apiKeys";
+import axios from "axios";
 
-const fetchWeather = async ({ lat, lon }) => {
+//fetchBoth is the function that fetch both API
+const fetchBoth = async ({
+  lat,
+  lon,
+  originplace,
+  destinationplace,
+  outboundpartialdate,
+  inboundpartialdate,
+}) => {
   const weatherParams = new URLSearchParams({
     lat,
     lon,
@@ -8,23 +17,11 @@ const fetchWeather = async ({ lat, lon }) => {
   }).toString();
 
   const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?${weatherParams}`;
-  // const url = "https://jsonplaceholder.typicode.com/posts"; //for testing in case of infinite loop
-  const response = await fetch(weatherURL);
-  const weatherJsonResponse = await response.json();
-  // console.log("fetchAPI weatherJsonResponse is: ", weatherJsonResponse);
 
-  return weatherJsonResponse;
-};
-
-const fetchFlight = async ({
-  originplace,
-  destinationplace,
-  outboundpartialdate,
-  inboundpartialdate,
-}) => {
   const flightURL = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originplace}/${destinationplace}/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`;
 
-  const response = await fetch(flightURL, {
+  const weatherData = await axios(weatherURL);
+  const flightData = await axios(flightURL, {
     method: "GET",
     headers: {
       "x-rapidapi-host":
@@ -33,9 +30,7 @@ const fetchFlight = async ({
     },
   });
 
-  const flightJsonResponse = await response.json();
-
-  return flightJsonResponse;
+  return { weather: weatherData, flight: flightData };
 };
 
-export { fetchWeather, fetchFlight };
+export { fetchBoth };

@@ -29,6 +29,11 @@ const ResortSelection = () => {
 
   const Rockies = [
     {
+      label: "Valle Nevado, Chile",
+      value: { lat: -33.347118, lon: -70.253 },
+      airport: "SLC",
+    },
+    {
       label: "Alta Snowbird, UT",
       value: { lat: 40.578996, lon: -111.635285 },
       airport: "SLC",

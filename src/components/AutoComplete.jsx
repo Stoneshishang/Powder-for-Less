@@ -51,7 +51,7 @@ const AutoComplete = ({ items }) => {
         onChange={handleTextChange}
         placeholder="Home Airport"
         type="text"
-        required
+        required="required"
       />
       <Suggestions {...{ suggestions, handleSelectSuggestion }} />
     </div>

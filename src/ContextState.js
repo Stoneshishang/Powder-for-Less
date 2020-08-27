@@ -1,5 +1,8 @@
 import React, { createContext, useState } from "react";
-import { fetchWeather, fetchFlight } from "./apis/fetchAPI";
+import {
+  // fetchWeather, fetchFlight,
+  fetchBoth,
+} from "./apis/fetchAPI";
 
 const defaultState = {
   // Airport Selection
@@ -21,12 +24,12 @@ const defaultState = {
 
   arrivalDate: "",
   setArrivalDate: () => {},
-  // Weather Data
-  fetchWeatherData: () => {},
-  weatherData: {},
-  // Flight Data
-  fetchFlightData: () => {},
-  flightData: {},
+
+  bothData: {},
+  fetchBothData: () => {},
+
+  sumTableData: {},
+  setSumTableData: () => {},
 };
 
 export const Context = createContext(defaultState);
@@ -39,21 +42,18 @@ export const InfoProvider = ({ children }) => {
   const [num, setNum] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [weatherData, setWeatherData] = useState("");
-  const [flightData, setFlightData] = useState("");
+  const [bothData, setBothData] = useState({ weather: null, flight: null });
+  const [sumTableData, setSumTableData] = useState({
+    resort: "",
+    weather: 0,
+    flight: {},
+  });
 
-  const fetchWeatherData = async (args) => {
-    const weatherData = await fetchWeather(args);
-    // console.log("ContextState fetchweatherData is: ", weatherData);
+  // fetchBothData is where the Data is actually fetched and set to the Context.
+  const fetchBothData = async (args) => {
+    const bothData = await fetchBoth(args);
 
-    setWeatherData(weatherData);
-  };
-
-  const fetchFlightData = async (args) => {
-    const flightData = await fetchFlight(args);
-    // console.log("ContextState fetchFlightData is: ", flightData);
-
-    setFlightData(flightData);
+    setBothData(bothData);
   };
 
   const value = {
@@ -79,11 +79,11 @@ export const InfoProvider = ({ children }) => {
     returnDate,
     setReturnDate,
 
-    weatherData,
-    fetchWeatherData,
+    bothData,
+    fetchBothData,
 
-    flightData,
-    fetchFlightData,
+    sumTableData,
+    setSumTableData,
   };
 
   // {value} is object property value shorthand.

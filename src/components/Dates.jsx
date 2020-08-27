@@ -28,7 +28,7 @@ const Dates = () => {
               placeholder="Deaprture Date"
               value={departureDate}
               onChange={(event) => setDepartureDate(event.target.value)}
-              // required
+              required
             />
             <pre>Selected departureDate is {JSON.stringify(departureDate)}</pre>
           </div>
