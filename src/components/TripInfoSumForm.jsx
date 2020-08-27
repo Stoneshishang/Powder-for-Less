@@ -74,6 +74,7 @@ const TripInfoSum = () => {
 
     const weather = bothData.weather;
     let dataID = "";
+    let tripSnowSum = 0;
     if (weather !== null) {
       const { daily: dailyWeatherInfo } = weather.data;
 
@@ -84,7 +85,7 @@ const TripInfoSum = () => {
         daysReturnTimeDiff,
       );
       const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
-      const tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
+      tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
         return s + (v || 0);
       }, 0);
 
@@ -99,13 +100,34 @@ const TripInfoSum = () => {
     }
 
     const flight = bothData.flight;
+    let direct = true;
+    let minPrice = null;
     if (flight !== null) {
       const { Quotes } = flight.data;
+
+      direct = Quotes.map((x) => x.Direct);
+
+      minPrice = Quotes.map((x) => x.MinPrice);
 
       console.log("Quotes is: ", Quotes);
     }
 
+    console.log("Direct is: ", direct);
+    console.log("MinPrice is: ", minPrice);
+
+    const gatherSumTableData = {
+      resort: dataID,
+      weather: tripSnowSum,
+      flight: { direct: direct, minPrice: minPrice },
+    };
+
+    console.log("gatherSumTableData is: ", gatherSumTableData);
+
+    setSumTableData(gatherSumTableData);
+
     console.log(`${dataID} has the bothData of: `, bothData);
+
+    console.log("sumTableData is: ", sumTableData);
   }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
