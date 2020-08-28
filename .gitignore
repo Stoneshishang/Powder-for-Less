@@ -24,3 +24,4 @@ yarn-error.log*
 
 #apikeys
 #/src/apis/apiKeys.js
+#by doing " git rm --cached src/apis/apiKeys.js " to delete from local repo, then commit it. https://www.atlassian.com/git/tutorials/saving-changes/gitignore
