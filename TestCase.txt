@@ -1,0 +1,2 @@
+1. when user add resorts in the table. only populate the added resort without previously rendered result.
+2. populate "Drive is better" when user selected resorts are within driving distance. which is originplace===destinationplace.
