@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import _ from "lodash";
 import { Context } from "../ContextState";
 
 const SumTable = () => {
@@ -37,7 +36,10 @@ const SumTable = () => {
   // const noResult = "No Flight Found, Please search again.";
 
   const renderFlightRouteInfo = (flightRoute) => {
-    if (_.has(flightRoute, "true" && "false") === true) {
+    console.log("flightRoute.true is: ", flightRoute.true);
+    console.log("flightRoute.false is: ", flightRoute.false);
+
+    if (flightRoute.true !== undefined && flightRoute.false !== undefined) {
       return (
         <tbody>
           <tr>
@@ -48,7 +50,10 @@ const SumTable = () => {
           </tr>
         </tbody>
       );
-    } else if (_.has(flightRoute, "true")) {
+    } else if (
+      flightRoute.true !== undefined &&
+      flightRoute.false === undefined
+    ) {
       return (
         <tbody>
           <tr>
@@ -56,11 +61,14 @@ const SumTable = () => {
           </tr>
         </tbody>
       );
-    } else if (_.has(flightRoute, "false")) {
+    } else if (
+      flightRoute.true === undefined &&
+      flightRoute.false !== undefined
+    ) {
       return (
         <tbody>
           <tr>
-            <td>Indirect: {flightRoute.false}</td>{" "}
+            <td>Indirect: {flightRoute.false}</td>
           </tr>
         </tbody>
       );
