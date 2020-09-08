@@ -17,7 +17,9 @@ const SumTable = () => {
 
   console.log("sumTableData from context is: ", sumTableData);
 
-  // console.log("SumTable props is: ", props.onSumTableData);
+  const slicedData = sumTableData.slice(2, sumTableData.length);
+
+  console.log("slicedData is: ", slicedData);
 
   const renderTable = (data) => {
     return (
@@ -50,7 +52,6 @@ const SumTable = () => {
       return (
         <tbody>
           <tr>
-            {" "}
             <td>Direct: {flightRoute.true}</td>
           </tr>
         </tbody>
@@ -59,7 +60,6 @@ const SumTable = () => {
       return (
         <tbody>
           <tr>
-            {" "}
             <td>Indirect: {flightRoute.false}</td>{" "}
           </tr>
         </tbody>
@@ -89,7 +89,10 @@ const SumTable = () => {
             <th>Flight ($)</th>
           </tr>
         </thead>
-        <tbody>{renderTable(sumTableData)}</tbody>
+        {/* <tbody>{renderTable(sumTableData)}</tbody> */}
+        {slicedData.map((dataItem, index) => {
+          return <tbody key={index}>{renderTable(dataItem)}</tbody>;
+        })}
       </Table>
     </div>
   );

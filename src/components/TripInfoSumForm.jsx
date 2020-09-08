@@ -124,8 +124,12 @@ const TripInfoSum = () => {
 
     console.log(`${dataID} gatherSumTableData is: `, gatherSumTableData);
 
-    setSumTableData(gatherSumTableData);
+    setSumTableData((prevData) => {
+      return [...prevData, gatherSumTableData];
+    });
   }, [bothData]);
+
+  console.log("SumTableData outside of useEffect is: ", sumTableData);
 
   // handler used to trigger api fetch with necessary data
   const handleFetchData = () => {
