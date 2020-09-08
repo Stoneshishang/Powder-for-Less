@@ -36,9 +36,6 @@ const SumTable = () => {
   // const noResult = "No Flight Found, Please search again.";
 
   const renderFlightRouteInfo = (flightRoute) => {
-    console.log("flightRoute.true is: ", flightRoute.true);
-    console.log("flightRoute.false is: ", flightRoute.false);
-
     if (flightRoute.true !== undefined && flightRoute.false !== undefined) {
       return (
         <tbody>
@@ -69,6 +66,14 @@ const SumTable = () => {
         <tbody>
           <tr>
             <td>Indirect: {flightRoute.false}</td>
+          </tr>
+        </tbody>
+      );
+    } else if (flightRoute === "DRIVE") {
+      return (
+        <tbody>
+          <tr>
+            <td>You live within driving distance, Please drive!</td>
           </tr>
         </tbody>
       );

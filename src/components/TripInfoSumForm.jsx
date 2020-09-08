@@ -55,6 +55,8 @@ const TripInfoSum = () => {
 
   // update selected date item
   let gatherSumTableData = {};
+  let dataID = "";
+  let tripSnowSum = 0;
 
   useEffect(() => {
     const today = new Date();
@@ -76,8 +78,7 @@ const TripInfoSum = () => {
     );
 
     const weather = bothData.weather;
-    let dataID = "";
-    let tripSnowSum = 0;
+
     if (weather !== null) {
       const { daily: dailyWeatherInfo } = weather.data;
 
@@ -161,8 +162,6 @@ const TripInfoSum = () => {
           outboundpartialdate,
           inboundpartialdate,
         });
-      } else {
-        console.log("   Drive is better!");
       }
     }
   };
