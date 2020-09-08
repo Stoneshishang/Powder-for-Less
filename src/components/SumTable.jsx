@@ -81,7 +81,7 @@ const SumTable = () => {
       return (
         <tbody>
           <tr>
-            <td>No Flight Found, Please search again.</td>
+            <td>No Flight Found, Please change your input and search again.</td>
           </tr>
         </tbody>
       );
