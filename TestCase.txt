@@ -1,2 +1,5 @@
 1. when user add resorts in the table. only populate the added resort without previously rendered result.
 2. populate "Drive is better" when user selected resorts are within driving distance. which is originplace===destinationplace.
+3. display airlines behind min price
+4. checkboxes for filtering direct/indirect
+5. add airline selections from the API response.

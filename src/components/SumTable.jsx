@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Context } from "../ContextState";
+import DetailTable from "./DetailTable";
 
 const SumTable = () => {
   // if (props.onSumFlightInfo !== undefined) {
@@ -14,15 +15,24 @@ const SumTable = () => {
   // }
   const { sumTableData } = useContext(Context);
 
-  console.log("sumTableData from context is: ", sumTableData);
+  // console.log("sumTableData from context is: ", sumTableData);
 
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
-  console.log("slicedData is: ", slicedData);
+  // console.log("slicedData is: ", slicedData);
+
+  const renderDetailTable = () => {
+    console.log("renderDetailTable is triggered!");
+    return (
+      <div>
+        <DetailTable />
+      </div>
+    );
+  };
 
   const renderTable = (data) => {
     return (
-      <tr>
+      <tr onClick={renderDetailTable}>
         {/* {console.log("key in SumTable is: ", index)} */}
         <td>{data.resort}</td>
         <td>{data.weather}</td>
@@ -98,7 +108,7 @@ const SumTable = () => {
         <thead>
           <tr>
             <th>Resort</th>
-            <th>Snow Forecast (mm)</th>
+            <th>Fresh Snow during Trip Duration (mm)</th>
             <th>Flight ($)</th>
           </tr>
         </thead>

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import SumTable from "./SumTable";
 import { Context } from "../ContextState";
 import _ from "lodash";
+import moment from "moment";
 
 const TripInfoSum = () => {
   const {
@@ -18,6 +19,9 @@ const TripInfoSum = () => {
 
     sumTableData,
     setSumTableData,
+
+    detailTableData,
+    setDetailTableData,
   } = useContext(Context);
 
   // const [sumTableWeatherInfo, setSumTableWeatherInfo] = useState();
@@ -55,7 +59,10 @@ const TripInfoSum = () => {
 
   // update selected date item
   let gatherSumTableData = {};
-  let dataID = "";
+  let gatherDetailTableData = {};
+  let detailDatesArr = [];
+  let detailWeatherDataArr = [];
+  let resortID = "";
   let tripSnowSum = 0;
 
   useEffect(() => {
@@ -70,7 +77,8 @@ const TripInfoSum = () => {
       departureTimeDiff / (1000 * 60 * 60 * 24),
     );
 
-    const daysReturnTimeDiff = Number(returnTimeDiff / (1000 * 60 * 60 * 24));
+    const daysReturnTimeDiff =
+      Number(returnTimeDiff / (1000 * 60 * 60 * 24)) + 1;
 
     setCountEffect(countEffect + 1);
     console.log(
@@ -78,7 +86,6 @@ const TripInfoSum = () => {
     );
 
     const weather = bothData.weather;
-
     if (weather !== null) {
       const { daily: dailyWeatherInfo } = weather.data;
 
@@ -89,18 +96,47 @@ const TripInfoSum = () => {
         daysReturnTimeDiff,
       );
       const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
+      detailWeatherDataArr = tripDurationSnowArr.map((v) =>
+        v === undefined ? "-" : v,
+      );
+
+      console.log("detialTableDataArr is: ", detailWeatherDataArr);
+
+      console.log(
+        `departureDate is ${JSON.stringify(
+          departureDate,
+        )}, returnDate is ${JSON.stringify(returnDate)}`,
+      );
+
+      const departureDateString = JSON.stringify(departureDate);
+
+      const returnDateString = JSON.stringify(returnDate);
+
+      const getDaysArray = (startDate, stopDate) => {
+        let dateArray = [];
+        let currentDate = moment(startDate, "YYYY-MM-DD");
+        stopDate = moment(stopDate, "YYYY-MM-DD");
+        while (currentDate <= stopDate) {
+          dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
+          currentDate = moment(currentDate).add(1, "days");
+        }
+        return dateArray;
+      };
+
+      detailDatesArr = getDaysArray(departureDateString, returnDateString);
+
+      console.log("datesArr is: ", detailDatesArr);
+
       tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
         return s + (v || 0);
       }, 0);
 
-      // console.log("   tripSnowSum is: ", tripSnowSum);
-
       //Match response Data with corresponding resort
-      const dataIDObj = chosenResortsObjArr.filter((obj) => {
+      const resortIDObj = chosenResortsObjArr.filter((obj) => {
         return _.round(obj.value.lat, 2) === weatherLocationInfo;
       });
 
-      dataID = dataIDObj.map((id) => id.label);
+      resortID = resortIDObj.map((id) => id.label);
     }
 
     const flight = bothData.flight;
@@ -110,7 +146,7 @@ const TripInfoSum = () => {
       const { Quotes } = flight.data;
       direct = Quotes.map((x) => x.Direct);
       minPrice = Quotes.map((x) => x.MinPrice);
-      console.log("Quotes is: ", Quotes);
+      // console.log("Quotes is: ", Quotes);
     }
 
     //merge two array into an object.
@@ -118,19 +154,30 @@ const TripInfoSum = () => {
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
 
     gatherSumTableData = {
-      resort: dataID,
+      resort: resortID,
       weather: tripSnowSum,
       flight: flightRoute,
     };
 
-    console.log(`${dataID} gatherSumTableData is: `, gatherSumTableData);
+    // console.log(`${resortID} gatherSumTableData is: `, gatherSumTableData);
+
+    gatherDetailTableData = {
+      date: detailDatesArr,
+      weather: detailWeatherDataArr,
+    };
+
+    console.log("gatherDetailTableData is: ", gatherDetailTableData);
+
+    setDetailTableData(gatherDetailTableData);
+
+    console.log("detailTableData is: ", detailTableData);
 
     setSumTableData((prevData) => {
       return [...prevData, gatherSumTableData];
     });
-  }, [bothData]);
 
-  console.log("SumTableData outside of useEffect is: ", sumTableData);
+    console.log("sumTableData is: ", sumTableData);
+  }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
   const handleFetchData = () => {
@@ -141,7 +188,6 @@ const TripInfoSum = () => {
 
     for (let i = 0; i < tripObjectsArr.length; i++) {
       const chosenResortsCords = tripObjectsArr[i].ResortCords;
-      // console.log("chosenResortCords is: ", chosenResortsCords);
 
       const lat = chosenResortsCords.lat;
       const lon = chosenResortsCords.lon;
@@ -149,7 +195,7 @@ const TripInfoSum = () => {
       //fetch flight data base on the user location, selected resorts, and dates.
       const originplace = homeAirportCode;
       const destinationplace = tripObjectsArr[i].Airport;
-      console.log("   destinationplace is: ", destinationplace);
+      // console.log("   destinationplace is: ", destinationplace);
       const outboundpartialdate = departureDate;
       const inboundpartialdate = returnDate;
 
@@ -164,6 +210,8 @@ const TripInfoSum = () => {
         });
       }
     }
+
+    // return <SumTable />;
   };
 
   return (

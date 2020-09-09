@@ -30,6 +30,9 @@ const defaultState = {
 
   sumTableData: {},
   setSumTableData: () => {},
+
+  detailTableData: {},
+  setDetailTableData: () => {},
 };
 
 export const Context = createContext(defaultState);
@@ -50,6 +53,7 @@ export const InfoProvider = ({ children }) => {
       flight: {},
     },
   ]);
+  const [detailTableData, setDetailTableData] = useState([]);
 
   // fetchBothData is where the Data is actually fetched and set to the Context.
   const fetchBothData = async (args) => {
@@ -86,6 +90,9 @@ export const InfoProvider = ({ children }) => {
 
     sumTableData,
     setSumTableData,
+
+    detailTableData,
+    setDetailTableData,
   };
 
   // {value} is object property value shorthand.
