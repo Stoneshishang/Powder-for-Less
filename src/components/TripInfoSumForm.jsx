@@ -30,6 +30,8 @@ const TripInfoSum = () => {
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
 
+  const [buttonClick, setButtonClick] = useState(false);
+
   const chosenResortsObjArr = selectedMW.concat(selectedRockies);
   // console.log("   choseResortsObjArr is: ", chosenResortsObjArr);
 
@@ -211,6 +213,8 @@ const TripInfoSum = () => {
       }
     }
 
+    setButtonClick(true);
+
     // return <SumTable />;
   };
 
@@ -227,9 +231,9 @@ const TripInfoSum = () => {
       <pre>TripInfoSum Number of Traveler is {JSON.stringify(num)}</pre>
       <pre>TripInfoSum departure Date is {JSON.stringify(departureDate)}</pre>
       <pre>TripInfoSum return Date is {JSON.stringify(returnDate)}</pre> */}
-
       <button onClick={handleFetchData}>Find Trips!</button>
-      <SumTable />
+      {buttonClick === true && <SumTable />}
+      {/* /try conditional rendering with ternary operator here. */}
     </div>
   );
 };
