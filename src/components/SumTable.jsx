@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Context } from "../ContextState";
@@ -14,7 +14,7 @@ const SumTable = () => {
   //   console.log("   SumTable props.SumFlightInfo is: ", flightInfoObj);
   // }
   const { sumTableData } = useContext(Context);
-
+  const [tableRowClick, setTableRowClick] = useState(false);
   // console.log("sumTableData from context is: ", sumTableData);
 
   const slicedData = sumTableData.slice(2, sumTableData.length);
@@ -23,17 +23,20 @@ const SumTable = () => {
 
   const renderDetailTable = () => {
     console.log("renderDetailTable is triggered!");
-    return (
-      <div>
-        <DetailTable />
-      </div>
-    );
+
+    setTableRowClick(true);
+    // return (
+    //   <div>
+    //     <DetailTable />
+    //   </div>
+    // );
   };
 
   const renderTable = (data) => {
     return (
       <tr onClick={renderDetailTable}>
         {/* {console.log("key in SumTable is: ", index)} */}
+        {tableRowClick === true && <DetailTable />}
         <td>{data.resort}</td>
         <td>{data.weather}</td>
         <td>
@@ -114,6 +117,7 @@ const SumTable = () => {
         </thead>
         {/* <tbody>{renderTable(sumTableData)}</tbody> */}
         {slicedData.map((dataItem, index) => {
+          console.log("key property is: ", index);
           return <tbody key={index}>{renderTable(dataItem)}</tbody>;
         })}
       </Table>

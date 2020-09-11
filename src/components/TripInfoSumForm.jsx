@@ -98,17 +98,18 @@ const TripInfoSum = () => {
         daysReturnTimeDiff,
       );
       const tripDurationSnowArr = tripDuationWeather.map((x) => x.snow);
+
       detailWeatherDataArr = tripDurationSnowArr.map((v) =>
         v === undefined ? "-" : v,
       );
 
-      console.log("detialTableDataArr is: ", detailWeatherDataArr);
+      // console.log("detialTableDataArr is: ", detailWeatherDataArr);
 
-      console.log(
-        `departureDate is ${JSON.stringify(
-          departureDate,
-        )}, returnDate is ${JSON.stringify(returnDate)}`,
-      );
+      // console.log(
+      //   `departureDate is ${JSON.stringify(
+      //     departureDate,
+      //   )}, returnDate is ${JSON.stringify(returnDate)}`,
+      // );
 
       const departureDateString = JSON.stringify(departureDate);
 
@@ -168,7 +169,7 @@ const TripInfoSum = () => {
       weather: detailWeatherDataArr,
     };
 
-    console.log("gatherDetailTableData is: ", gatherDetailTableData);
+    // console.log("gatherDetailTableData is: ", gatherDetailTableData);
 
     setDetailTableData(gatherDetailTableData);
 
@@ -178,7 +179,7 @@ const TripInfoSum = () => {
       return [...prevData, gatherSumTableData];
     });
 
-    console.log("sumTableData is: ", sumTableData);
+    // console.log("sumTableData is: ", sumTableData);
   }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
