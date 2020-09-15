@@ -33,6 +33,7 @@ const SumTable = () => {
   };
 
   const renderTable = (data) => {
+    console.log("data in renderTable is: ", data);
     return (
       <tr onClick={renderDetailTable}>
         {/* {console.log("key in SumTable is: ", index)} */}
@@ -41,6 +42,9 @@ const SumTable = () => {
         <td>{data.weather}</td>
         <td>
           <table>{renderFlightRouteInfo(data.flight)}</table>
+        </td>
+        <td>
+          <button>view detailed weather</button>
         </td>
       </tr>
     );
