@@ -33,7 +33,7 @@ const SumTable = () => {
 
     const index = shownState.indexOf(resortName);
 
-    if (index > 0) {
+    if (index >= 0) {
       shownState.splice(index, 1);
       setDetailsShown(shownState);
     } else {
@@ -67,9 +67,19 @@ const SumTable = () => {
           </td>
         </tr>
         {detailsShown.includes(data.resort) && (
-          <tr>
-            <td>{detailTableData.resort}</td>
-          </tr>
+          <React.Fragment>
+            <tr>
+              {/* <td>{detailTableData.resort}</td> */}
+              {detailTableData.date.map((date, index) => (
+                <td key={index}>{date}</td>
+              ))}
+            </tr>
+            <tr>
+              {detailTableData.weather.map((weather, index) => (
+                <td key={index}>{weather}</td>
+              ))}
+            </tr>
+          </React.Fragment>
         )}
       </React.Fragment>
     );
@@ -146,7 +156,7 @@ const SumTable = () => {
         </thead>
         {/* <tbody>{renderTable(sumTableData)}</tbody> */}
         {slicedData.map((dataItem, index) => {
-          console.log("key property is: ", index);
+          // console.log("key property is: ", index);
           return <tbody key={index}>{renderTable(dataItem)}</tbody>;
         })}
       </Table>

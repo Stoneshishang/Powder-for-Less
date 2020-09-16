@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import SumTable from "./SumTable";
+import SumTable from "./CollapsibleSumTable";
 import { Context } from "../ContextState";
 import _ from "lodash";
 import moment from "moment";
