@@ -128,7 +128,7 @@ const TripInfoSum = () => {
 
       detailDatesArr = getDaysArray(departureDateString, returnDateString);
 
-      console.log("datesArr is: ", detailDatesArr);
+      // console.log("datesArr is: ", detailDatesArr);
 
       tripSnowSum = tripDurationSnowArr.reduce((s, v) => {
         return s + (v || 0);
@@ -165,6 +165,7 @@ const TripInfoSum = () => {
     // console.log(`${resortID} gatherSumTableData is: `, gatherSumTableData);
 
     gatherDetailTableData = {
+      resort: resortID,
       date: detailDatesArr,
       weather: detailWeatherDataArr,
     };
@@ -173,7 +174,7 @@ const TripInfoSum = () => {
 
     setDetailTableData(gatherDetailTableData);
 
-    console.log("detailTableData is: ", detailTableData);
+    // console.log("detailTableData is: ", detailTableData);
 
     setSumTableData((prevData) => {
       return [...prevData, gatherSumTableData];

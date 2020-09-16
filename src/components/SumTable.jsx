@@ -14,8 +14,11 @@ const SumTable = () => {
   //   console.log("   SumTable props.SumFlightInfo is: ", flightInfoObj);
   // }
   const { sumTableData } = useContext(Context);
-  const [tableRowClick, setTableRowClick] = useState(false);
+  // const [tableRowClick, setTableRowClick] = useState(false);
   // console.log("sumTableData from context is: ", sumTableData);
+  const { detailTableData } = useContext(Context);
+
+  console.log("SumTable.jsx detailTableData is: ", detailTableData);
 
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
@@ -24,7 +27,7 @@ const SumTable = () => {
   const renderDetailTable = () => {
     console.log("renderDetailTable is triggered!");
 
-    setTableRowClick(true);
+    // setTableRowClick(true);
     // return (
     //   <div>
     //     <DetailTable />
@@ -35,16 +38,18 @@ const SumTable = () => {
   const renderTable = (data) => {
     console.log("data in renderTable is: ", data);
     return (
-      <tr onClick={renderDetailTable}>
+      <tr>
         {/* {console.log("key in SumTable is: ", index)} */}
-        {tableRowClick === true && <DetailTable />}
+        {/* {tableRowClick === true && <DetailTable />} */}
         <td>{data.resort}</td>
         <td>{data.weather}</td>
         <td>
           <table>{renderFlightRouteInfo(data.flight)}</table>
         </td>
         <td>
-          <button>view detailed weather</button>
+          <button onClick={() => renderDetailTable()}>
+            view detailed weather
+          </button>
         </td>
       </tr>
     );
