@@ -18,15 +18,28 @@ const SumTable = () => {
   // console.log("sumTableData from context is: ", sumTableData);
   const { detailTableData } = useContext(Context);
 
+  const [detailsShown, setDetailsShown] = useState([]);
+
   console.log("SumTable.jsx detailTableData is: ", detailTableData);
 
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
   // console.log("slicedData is: ", slicedData);
 
-  const renderDetailTable = () => {
-    console.log("renderDetailTable is triggered!");
+  const renderDetailTable = (resortName) => {
+    console.log("**********renderDetailTable is triggered!**************");
 
+    const shownState = detailsShown.slice();
+
+    const index = shownState.indexOf(resortName);
+
+    if (index > 0) {
+      shownState.splice(index, 1);
+      setDetailsShown(shownState);
+    } else {
+      shownState.push(resortName);
+      setDetailsShown(shownState);
+    }
     // setTableRowClick(true);
     // return (
     //   <div>
@@ -38,20 +51,27 @@ const SumTable = () => {
   const renderTable = (data) => {
     console.log("data in renderTable is: ", data);
     return (
-      <tr>
-        {/* {console.log("key in SumTable is: ", index)} */}
-        {/* {tableRowClick === true && <DetailTable />} */}
-        <td>{data.resort}</td>
-        <td>{data.weather}</td>
-        <td>
-          <table>{renderFlightRouteInfo(data.flight)}</table>
-        </td>
-        <td>
-          <button onClick={() => renderDetailTable()}>
-            view detailed weather
-          </button>
-        </td>
-      </tr>
+      <React.Fragment key={data.resort}>
+        <tr>
+          {/* {console.log("key in SumTable is: ", index)} */}
+          {/* {tableRowClick === true && <DetailTable />} */}
+          <td>{data.resort}</td>
+          <td>{data.weather}</td>
+          <td>
+            <table>{renderFlightRouteInfo(data.flight)}</table>
+          </td>
+          <td>
+            <button onClick={() => renderDetailTable(data.resort)}>
+              view detailed weather
+            </button>
+          </td>
+        </tr>
+        {detailsShown.includes(data.resort) && (
+          <tr>
+            <td>{detailTableData.resort}</td>
+          </tr>
+        )}
+      </React.Fragment>
     );
   };
 
