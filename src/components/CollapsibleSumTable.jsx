@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Context } from "../ContextState";
-import DetailTable from "./DetailTable";
 
 const SumTable = () => {
   // if (props.onSumFlightInfo !== undefined) {
@@ -15,24 +14,26 @@ const SumTable = () => {
   // }
   const { sumTableData, setSumTableData } = useContext(Context);
   // const [tableRowClick, setTableRowClick] = useState(false);
-  console.log("sumTableData from context is: ", sumTableData);
+  // console.log("sumTableData from context is: ", sumTableData);
   const { detailTableData } = useContext(Context);
 
   const [detailsShown, setDetailsShown] = useState([]);
 
-  console.log("SumTable.jsx detailTableData is: ", detailTableData);
+  // console.log("SumTable.jsx detailTableData is: ", detailTableData);
 
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
+  let selectedResortInDetailedTableData;
   // console.log("slicedData is: ", slicedData);
 
   const renderDetailTable = (resortName) => {
     console.log("**********renderDetailTable is triggered!**************");
-
-    const shownState = detailsShown.slice();
-
+    // console.log("renderDetailTable is: ", detailTableData);
+    const shownState = detailTableData.slice();
+    // console.log("shownState is: ", shownState);
+    // console.log("resortName is: ", resortName);
     const index = shownState.indexOf(resortName);
-
+    // console.log("index is: ", index);
     if (index >= 0) {
       shownState.splice(index, 1);
       setDetailsShown(shownState);
@@ -40,6 +41,7 @@ const SumTable = () => {
       shownState.push(resortName);
       setDetailsShown(shownState);
     }
+
     // setTableRowClick(true);
     // return (
     //   <div>
@@ -49,7 +51,7 @@ const SumTable = () => {
   };
 
   const renderTable = (data) => {
-    console.log("data in renderTable is: ", data);
+    // console.log("data in renderTable is: ", data);
     return (
       <React.Fragment key={data.resort}>
         <tr>
@@ -68,16 +70,36 @@ const SumTable = () => {
         </tr>
         {detailsShown.includes(data.resort) && (
           <React.Fragment>
+            {console.log("detailsShown data.resort is: ", data.resort)}
+            {console.log("detailTableData is: ", detailTableData)}
+            {
+              (selectedResortInDetailedTableData = detailTableData.find(
+                ({ resort }) => resort === data.resort,
+              ))
+            }
+
+            {console.log(
+              "selectedResortInDetailedTableData.date is: ",
+              selectedResortInDetailedTableData.date,
+            )}
+
             <tr>
-              {/* <td>{detailTableData.resort}</td> */}
-              {detailTableData.date.map((date, index) => (
+              {selectedResortInDetailedTableData.date.map((date, index) => (
                 <td key={index}>{date}</td>
               ))}
             </tr>
             <tr>
-              {detailTableData.weather.map((weather, index) => (
-                <td key={index}>{weather}</td>
-              ))}
+              {selectedResortInDetailedTableData.weather.map(
+                (weather, index) => (
+                  <td key={index}>
+                    {/* {console.log(
+                      "detailTableData in detailshown is: ",
+                      detailTableData,
+                    )} */}
+                    {weather}
+                  </td>
+                ),
+              )}
             </tr>
           </React.Fragment>
         )}

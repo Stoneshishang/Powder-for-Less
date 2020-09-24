@@ -140,6 +140,8 @@ const TripInfoSum = () => {
       });
 
       resortID = resortIDObj.map((id) => id.label);
+      resortID = resortID[0];
+      console.log("resortID is: ", resortID);
     }
 
     const flight = bothData.flight;
@@ -170,11 +172,13 @@ const TripInfoSum = () => {
       weather: detailWeatherDataArr,
     };
 
-    // console.log("gatherDetailTableData is: ", gatherDetailTableData);
+    console.log("gatherDetailTableData is: ", gatherDetailTableData);
 
-    setDetailTableData(gatherDetailTableData);
+    setDetailTableData((prevData) => {
+      return [...prevData, gatherDetailTableData];
+    });
 
-    // console.log("detailTableData is: ", detailTableData);
+    // console.log("tripInfoSum detailTableData is: ", detailTableData);
 
     setSumTableData((prevData) => {
       return [...prevData, gatherSumTableData];
