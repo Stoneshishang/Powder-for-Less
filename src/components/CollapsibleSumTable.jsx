@@ -13,9 +13,9 @@ const SumTable = () => {
   //   const flightInfoObj = JSON.parse(props.onSumFlightInfo);
   //   console.log("   SumTable props.SumFlightInfo is: ", flightInfoObj);
   // }
-  const { sumTableData } = useContext(Context);
+  const { sumTableData, setSumTableData } = useContext(Context);
   // const [tableRowClick, setTableRowClick] = useState(false);
-  // console.log("sumTableData from context is: ", sumTableData);
+  console.log("sumTableData from context is: ", sumTableData);
   const { detailTableData } = useContext(Context);
 
   const [detailsShown, setDetailsShown] = useState([]);

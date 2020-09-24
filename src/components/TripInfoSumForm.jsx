@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import SumTable from "./CollapsibleSumTable";
+import CollapsibleSumTable from "./CollapsibleSumTable";
 import { Context } from "../ContextState";
 import _ from "lodash";
 import moment from "moment";
@@ -234,7 +234,7 @@ const TripInfoSum = () => {
       <pre>TripInfoSum departure Date is {JSON.stringify(departureDate)}</pre>
       <pre>TripInfoSum return Date is {JSON.stringify(returnDate)}</pre> */}
       <button onClick={handleFetchData}>Find Trips!</button>
-      {buttonClick === true && <SumTable />}
+      {buttonClick === true && <CollapsibleSumTable />}
       {/* /try conditional rendering with ternary operator here. */}
     </div>
   );
