@@ -51,6 +51,15 @@ const SumTable = () => {
   };
 
   const renderTable = (data) => {
+    selectedResortInDetailedTableData = detailTableData.find(
+      ({ resort }) => resort === data.resort,
+    );
+
+    console.log(
+      "selectedResortInDetailedTableData.date is: ",
+      selectedResortInDetailedTableData.date,
+    );
+
     // console.log("data in renderTable is: ", data);
     return (
       <React.Fragment key={data.resort}>
@@ -72,16 +81,6 @@ const SumTable = () => {
           <React.Fragment>
             {console.log("detailsShown data.resort is: ", data.resort)}
             {console.log("detailTableData is: ", detailTableData)}
-            {
-              (selectedResortInDetailedTableData = detailTableData.find(
-                ({ resort }) => resort === data.resort,
-              ))
-            }
-
-            {console.log(
-              "selectedResortInDetailedTableData.date is: ",
-              selectedResortInDetailedTableData.date,
-            )}
 
             <tr>
               {selectedResortInDetailedTableData.date.map((date, index) => (
