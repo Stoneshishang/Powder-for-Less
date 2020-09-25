@@ -1,23 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Context } from "../ContextState";
 
 const SumTable = () => {
-  // if (props.onSumFlightInfo !== undefined) {
-  //   console.log(
-  //     "   SumTable props.SumWeatherInfo is: ",
-  //     props.onSumWeatherInfo,
-  //   );
-  //   const flightInfoObj = JSON.parse(props.onSumFlightInfo);
-  //   console.log("   SumTable props.SumFlightInfo is: ", flightInfoObj);
-  // }
-  const { sumTableData, setSumTableData } = useContext(Context);
-  // const [tableRowClick, setTableRowClick] = useState(false);
-  // console.log("sumTableData from context is: ", sumTableData);
-  const { detailTableData } = useContext(Context);
-
-  const [detailsShown, setDetailsShown] = useState([]);
+  const { sumTableData } = useContext(Context);
+  const { detailTableData, setDetailTableData } = useContext(Context);
 
   // console.log("SumTable.jsx detailTableData is: ", detailTableData);
 
@@ -36,18 +24,11 @@ const SumTable = () => {
     // console.log("index is: ", index);
     if (index >= 0) {
       shownState.splice(index, 1);
-      setDetailsShown(shownState);
+      setDetailTableData(shownState);
     } else {
       shownState.push(resortName);
-      setDetailsShown(shownState);
+      setDetailTableData(shownState);
     }
-
-    // setTableRowClick(true);
-    // return (
-    //   <div>
-    //     <DetailTable />
-    //   </div>
-    // );
   };
 
   const renderTable = (data) => {
@@ -64,8 +45,6 @@ const SumTable = () => {
     return (
       <React.Fragment key={data.resort}>
         <tr>
-          {/* {console.log("key in SumTable is: ", index)} */}
-          {/* {tableRowClick === true && <DetailTable />} */}
           <td>{data.resort}</td>
           <td>{data.weather}</td>
           <td>
@@ -77,7 +56,7 @@ const SumTable = () => {
             </button>
           </td>
         </tr>
-        {detailsShown.includes(data.resort) && (
+        {detailTableData.includes(data.resort) && (
           <React.Fragment>
             {console.log("detailsShown data.resort is: ", data.resort)}
             {console.log("detailTableData is: ", detailTableData)}
@@ -90,13 +69,7 @@ const SumTable = () => {
             <tr>
               {selectedResortInDetailedTableData.weather.map(
                 (weather, index) => (
-                  <td key={index}>
-                    {/* {console.log(
-                      "detailTableData in detailshown is: ",
-                      detailTableData,
-                    )} */}
-                    {weather}
-                  </td>
+                  <td key={index}>{weather}</td>
                 ),
               )}
             </tr>
@@ -105,8 +78,6 @@ const SumTable = () => {
       </React.Fragment>
     );
   };
-
-  // const noResult = "No Flight Found, Please search again.";
 
   const renderFlightRouteInfo = (flightRoute) => {
     if (flightRoute.true !== undefined && flightRoute.false !== undefined) {
@@ -163,10 +134,6 @@ const SumTable = () => {
 
   return (
     <div>
-      {/* <pre>props.sumWeatherInfo is: {props.onSumWeatherInfo}</pre> */}
-
-      {/* <pre>props.sumFlightInfo is: {props.onSumFlightInfo}</pre> */}
-
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -175,9 +142,7 @@ const SumTable = () => {
             <th>Flight ($)</th>
           </tr>
         </thead>
-        {/* <tbody>{renderTable(sumTableData)}</tbody> */}
         {slicedData.map((dataItem, index) => {
-          // console.log("key property is: ", index);
           return <tbody key={index}>{renderTable(dataItem)}</tbody>;
         })}
       </Table>

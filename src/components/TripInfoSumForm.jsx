@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CollapsibleSumTable from "./CollapsibleSumTable";
 import { Context } from "../ContextState";
 import _ from "lodash";
@@ -9,23 +9,13 @@ const TripInfoSum = () => {
     airport,
     selectedMW,
     selectedRockies,
-    selectedSierra,
-    // num,
     departureDate,
     returnDate,
-
     bothData,
     fetchBothData,
-
-    sumTableData,
     setSumTableData,
-
-    detailTableData,
     setDetailTableData,
   } = useContext(Context);
-
-  // const [sumTableWeatherInfo, setSumTableWeatherInfo] = useState();
-  // const [sumTableFlightInfo, setSumTableFlightInfo] = useState();
 
   const [count, setCount] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
@@ -220,26 +210,12 @@ const TripInfoSum = () => {
     }
 
     setButtonClick(true);
-
-    // return <SumTable />;
   };
 
   return (
     <div>
-      {/* <pre>
-        TripInfoSum selected MW resorts are {JSON.stringify(selectedMW)}
-      </pre>
-      <pre>
-        TirpInfoSum Rockies resorts are {JSON.stringify(selectedRockies)}
-      </pre> */}
-      {/* <pre>TirpInfoSum Sierra resorts are {JSON.stringify(selectedSierra)}</pre>
-      <pre>TripInfoSum home airpot is {JSON.stringify(airport)}</pre>
-      <pre>TripInfoSum Number of Traveler is {JSON.stringify(num)}</pre>
-      <pre>TripInfoSum departure Date is {JSON.stringify(departureDate)}</pre>
-      <pre>TripInfoSum return Date is {JSON.stringify(returnDate)}</pre> */}
       <button onClick={handleFetchData}>Find Trips!</button>
       {buttonClick === true && <CollapsibleSumTable />}
-      {/* /try conditional rendering with ternary operator here. */}
     </div>
   );
 };
