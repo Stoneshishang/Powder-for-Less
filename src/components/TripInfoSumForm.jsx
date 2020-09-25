@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import CollapsibleSumTable from "./CollapsibleSumTable";
 import { Context } from "../ContextState";
 import _ from "lodash";
 import moment from "moment";
+// import LaterButtonClickTable from "./LaterButtonClickTable";
 
 const TripInfoSum = () => {
   const {
@@ -13,11 +14,12 @@ const TripInfoSum = () => {
     returnDate,
     bothData,
     fetchBothData,
+    sumTableData,
     setSumTableData,
     setDetailTableData,
   } = useContext(Context);
 
-  const [count, setCount] = useState(0);
+  const [countButtonClick, setCountButtonClick] = useState(0);
   const [countEffect, setCountEffect] = useState(0);
 
   const [buttonClick, setButtonClick] = useState(false);
@@ -50,12 +52,14 @@ const TripInfoSum = () => {
   // const uniqueAirports = [...new Set(chosenResortsAirportArr)];
 
   // update selected date item
+  let detailWeatherDataArr = [];
+  let detailDatesArr = [];
+  let tripSnowSum = 0;
+  let resortID = "";
   let gatherSumTableData = {};
   let gatherDetailTableData = {};
-  let detailDatesArr = [];
-  let detailWeatherDataArr = [];
-  let resortID = "";
-  let tripSnowSum = 0;
+
+  // const prevSumTable = useRef([]);
 
   useEffect(() => {
     const today = new Date();
@@ -154,6 +158,8 @@ const TripInfoSum = () => {
       flight: flightRoute,
     };
 
+    // prevSumTable.current = prevSumTable.push(gatherSumTableData);
+
     // console.log(`${resortID} gatherSumTableData is: `, gatherSumTableData);
 
     gatherDetailTableData = {
@@ -174,16 +180,44 @@ const TripInfoSum = () => {
       return [...prevData, gatherSumTableData];
     });
 
+    // prevSumTable.current = sumTableData;
+
     // console.log("sumTableData is: ", sumTableData);
   }, [bothData]);
 
-  // handler used to trigger api fetch with necessary data
-  const handleFetchData = () => {
-    setCount(count + 1);
-    console.log(
-      `*************************clicked on it ${count} times ********************************* `,
-    );
+  // console.log("prevSumTable.current is: ", prevSumTable.current);
 
+  // console.log("prevSumTable is: ", prevSumTable.current);
+
+  // handler used to trigger api fetch with necessary data
+
+  const conditionalRenderTable = () => {
+    setCountButtonClick(countButtonClick + 1);
+    console.log(
+      `*************************clicked on it ${countButtonClick} times ********************************* `,
+    );
+    if (countButtonClick === 0) {
+      handleFetchData();
+    } else {
+      setSumTableData([
+        {
+          resort: "",
+          weather: 0,
+          flight: {},
+        },
+        {
+          resort: "",
+          weather: 0,
+          flight: {},
+        },
+      ]);
+      console.log("conditionalRenderTable SumTableData is: ", sumTableData);
+
+      handleFetchData();
+    }
+  };
+
+  const handleFetchData = () => {
     for (let i = 0; i < tripObjectsArr.length; i++) {
       const chosenResortsCords = tripObjectsArr[i].ResortCords;
 
@@ -214,8 +248,13 @@ const TripInfoSum = () => {
 
   return (
     <div>
-      <button onClick={handleFetchData}>Find Trips!</button>
-      {buttonClick === true && <CollapsibleSumTable />}
+      <button onClick={conditionalRenderTable}>Find Trips!</button>
+      {buttonClick === true && (
+        // countButtonClick === 0 ?
+        <CollapsibleSumTable />
+        // ) : (
+        //   // <LaterButtonClickTable />
+      )}
     </div>
   );
 };

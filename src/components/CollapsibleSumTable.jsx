@@ -12,7 +12,7 @@ const SumTable = () => {
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
   let selectedResortInDetailedTableData;
-  // console.log("slicedData is: ", slicedData);
+  console.log("slicedData is: ", slicedData);
 
   const renderDetailTable = (resortName) => {
     console.log("**********renderDetailTable is triggered!**************");
@@ -36,10 +36,10 @@ const SumTable = () => {
       ({ resort }) => resort === data.resort,
     );
 
-    console.log(
-      "selectedResortInDetailedTableData.date is: ",
-      selectedResortInDetailedTableData.date,
-    );
+    // console.log(
+    //   "selectedResortInDetailedTableData.date is: ",
+    //   selectedResortInDetailedTableData.date,
+    // );
 
     // console.log("data in renderTable is: ", data);
     return (
@@ -58,8 +58,8 @@ const SumTable = () => {
         </tr>
         {detailTableData.includes(data.resort) && (
           <React.Fragment>
-            {console.log("detailsShown data.resort is: ", data.resort)}
-            {console.log("detailTableData is: ", detailTableData)}
+            {/* {console.log("detailsShown data.resort is: ", data.resort)}
+            {console.log("detailTableData is: ", detailTableData)} */}
 
             <tr>
               {selectedResortInDetailedTableData.date.map((date, index) => (
