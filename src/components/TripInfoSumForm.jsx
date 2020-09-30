@@ -3,6 +3,7 @@ import CollapsibleSumTable from "./CollapsibleSumTable";
 import { Context } from "../ContextState";
 import _ from "lodash";
 import moment from "moment";
+
 // import LaterButtonClickTable from "./LaterButtonClickTable";
 
 const TripInfoSum = () => {
@@ -17,6 +18,8 @@ const TripInfoSum = () => {
     sumTableData,
     setSumTableData,
     setDetailTableData,
+    loading,
+    setLoading,
   } = useContext(Context);
 
   const [countButtonClick, setCountButtonClick] = useState(0);
@@ -192,6 +195,8 @@ const TripInfoSum = () => {
   // handler used to trigger api fetch with necessary data
 
   const conditionalRenderTable = () => {
+    setLoading(true);
+    console.log("Spinner loading is: ", loading);
     setCountButtonClick(countButtonClick + 1);
     console.log(
       `*************************clicked on it ${countButtonClick} times ********************************* `,
@@ -249,12 +254,23 @@ const TripInfoSum = () => {
   return (
     <div>
       <button onClick={conditionalRenderTable}>Find Trips!</button>
-      {buttonClick === true && (
-        // countButtonClick === 0 ?
+      {buttonClick === true && <CollapsibleSumTable isLoading={loading} />}
+      {console.log("Spinner loading in JSX is: ", loading)}
+
+      {/* {(() => {
+        if (buttonClick === true) {
+          if (loading === false) {
+            return <CollapsibleSumTable />;
+          } else {
+            return <Spinner animation="border" />;
+          }
+        }
+      })()} */}
+      {/* {buttonClick && !loading ? (
         <CollapsibleSumTable />
-        // ) : (
-        //   // <LaterButtonClickTable />
-      )}
+      ) : (
+        <Spinner animation="border" />
+      )} */}
     </div>
   );
 };

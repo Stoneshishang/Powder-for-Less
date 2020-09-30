@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Spinner from "react-bootstrap/Spinner";
 import { Context } from "../ContextState";
 
-const SumTable = () => {
-  const { sumTableData } = useContext(Context);
+const CollapsibleSumTable = (props) => {
+  const { sumTableData, setLoading } = useContext(Context);
   const { detailTableData, setDetailTableData } = useContext(Context);
 
   // console.log("SumTable.jsx detailTableData is: ", detailTableData);
@@ -36,6 +36,8 @@ const SumTable = () => {
       ({ resort }) => resort === data.resort,
     );
 
+    setLoading(false);
+
     // console.log(
     //   "selectedResortInDetailedTableData.date is: ",
     //   selectedResortInDetailedTableData.date,
@@ -44,6 +46,7 @@ const SumTable = () => {
     // console.log("data in renderTable is: ", data);
     return (
       <React.Fragment key={data.resort}>
+        {/* {setLoading(false)} */}
         <tr>
           <td>{data.resort}</td>
           <td>{data.weather}</td>
@@ -134,6 +137,7 @@ const SumTable = () => {
 
   return (
     <div>
+      {props.isLoading && <Spinner animation="border" />}
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -142,6 +146,8 @@ const SumTable = () => {
             <th>Flight ($)</th>
           </tr>
         </thead>
+        {console.log("props.isLoading is: ", props.isLoading)}
+
         {slicedData.map((dataItem, index) => {
           return <tbody key={index}>{renderTable(dataItem)}</tbody>;
         })}
@@ -150,4 +156,4 @@ const SumTable = () => {
   );
 };
 
-export default SumTable;
+export default CollapsibleSumTable;

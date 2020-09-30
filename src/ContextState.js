@@ -1,8 +1,5 @@
 import React, { createContext, useState } from "react";
-import {
-  // fetchWeather, fetchFlight,
-  fetchBoth,
-} from "./apis/fetchAPI";
+import { fetchBoth } from "./apis/fetchAPI";
 
 const defaultState = {
   // Airport Selection
@@ -33,6 +30,12 @@ const defaultState = {
 
   detailTableData: {},
   setDetailTableData: () => {},
+
+  loading: false,
+  setLoading: () => {},
+
+  error: {},
+  setError: () => {},
 };
 
 export const Context = createContext(defaultState);
@@ -54,6 +57,8 @@ export const InfoProvider = ({ children }) => {
     },
   ]);
   const [detailTableData, setDetailTableData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({});
 
   // fetchBothData is where the Data is actually fetched and set to the Context.
   const fetchBothData = async (args) => {
@@ -93,6 +98,12 @@ export const InfoProvider = ({ children }) => {
 
     detailTableData,
     setDetailTableData,
+
+    loading,
+    setLoading,
+
+    error,
+    setError,
   };
 
   // {value} is object property value shorthand.
