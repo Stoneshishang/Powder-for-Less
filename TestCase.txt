@@ -3,3 +3,6 @@
 3. display airlines behind min price
 4. checkboxes for filtering direct/indirect
 5. add airline selections from the API response.
+
+
+CSS: add spinners while loading.
