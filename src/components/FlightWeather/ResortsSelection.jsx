@@ -2,7 +2,7 @@ import React from "react";
 import MultiSelect from "react-multi-select-component";
 import "./ResortSelection.css";
 
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 
 // few other multiselect choices
 // https://www.npmjs.com/package/react-select

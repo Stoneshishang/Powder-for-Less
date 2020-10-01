@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import CollapsibleSumTable from "./CollapsibleSumTable";
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 import _ from "lodash";
 import moment from "moment";
 
@@ -256,21 +256,6 @@ const TripInfoSum = () => {
       <button onClick={conditionalRenderTable}>Find Trips!</button>
       {buttonClick === true && <CollapsibleSumTable isLoading={loading} />}
       {console.log("Spinner loading in JSX is: ", loading)}
-
-      {/* {(() => {
-        if (buttonClick === true) {
-          if (loading === false) {
-            return <CollapsibleSumTable />;
-          } else {
-            return <Spinner animation="border" />;
-          }
-        }
-      })()} */}
-      {/* {buttonClick && !loading ? (
-        <CollapsibleSumTable />
-      ) : (
-        <Spinner animation="border" />
-      )} */}
     </div>
   );
 };

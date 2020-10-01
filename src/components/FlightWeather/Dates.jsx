@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 
 const Dates = () => {
   // const [departureDate, setDepartureDate] = useState("");

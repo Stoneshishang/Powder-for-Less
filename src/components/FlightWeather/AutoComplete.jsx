@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 import "./AutoComplete.css";
 
 //This feature is converted from class components to Hooks based on below videos

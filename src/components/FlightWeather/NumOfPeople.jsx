@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 
 const NumOfPeople = () => {
   return (
