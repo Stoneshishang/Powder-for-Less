@@ -30,7 +30,6 @@ const Dates = () => {
               onChange={(event) => setDepartureDate(event.target.value)}
               required
             />
-            <pre>Selected departureDate is {JSON.stringify(departureDate)}</pre>
           </div>
         )}
       </Context.Consumer>
@@ -46,7 +45,6 @@ const Dates = () => {
               onChange={(event) => setReturnDate(event.target.value)}
               required
             />
-            <pre>Selected arrivalDate is {JSON.stringify(returnDate)}</pre>
           </div>
         )}
       </Context.Consumer>

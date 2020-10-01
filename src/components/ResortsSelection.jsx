@@ -61,7 +61,7 @@ const ResortSelection = () => {
 
   return (
     // Render the MultiSelected Boxes by resorts region.
-    <div className="resortSelection">
+    <div className="resort-selection">
       <div className="resortList">
         {/* Context.Consumer vs useContext https://stackoverflow.com/questions/56816374/context-consumer-vs-usecontext-to-access-values-passed-by-context-provider */}
         <Context.Consumer>

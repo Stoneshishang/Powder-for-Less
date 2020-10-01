@@ -7,8 +7,6 @@ const CollapsibleSumTable = (props) => {
   const { sumTableData, setLoading } = useContext(Context);
   const { detailTableData, setDetailTableData } = useContext(Context);
 
-  // console.log("SumTable.jsx detailTableData is: ", detailTableData);
-
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
   let selectedResortInDetailedTableData;
@@ -146,7 +144,6 @@ const CollapsibleSumTable = (props) => {
             <th>Flight ($)</th>
           </tr>
         </thead>
-        {console.log("props.isLoading is: ", props.isLoading)}
 
         {slicedData.map((dataItem, index) => {
           return <tbody key={index}>{renderTable(dataItem)}</tbody>;

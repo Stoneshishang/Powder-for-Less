@@ -20,14 +20,10 @@ const App = () => {
       <div>
         <Header />
         <ResortsSelection />
-        <label>Home Airport:</label>
-        <AutoComplete
-          name="autocomplete-airport"
-          items={airports}
-          required="required"
-        />
+
+        <AutoComplete name="autocomplete-airport" items={airports} />
         <NumOfPeople />
-        <Dates required="required" />
+        <Dates />
         <TripInfoSumForm />
         {/* <Footer /> */}
       </div>

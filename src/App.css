@@ -1,17 +1,66 @@
 .nav-bar h1 {
   font-style: italic;
   font-family: "Montserrat", sans-serif;
-  background-color: #1348f583;
+  background-color: #4292fc;
   margin: -8px -8px;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
+.resort-selection {
+  text-align: center;
+}
+
+.num-people {
+  text-align: center;
+}
+
 .dates {
   text-align: center;
 }
-.find-trip-info-btn {
+
+.auto-complete {
+  width: 50%;
+  border: 1px solid grey;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2 4 1 rgba(0, 0, 0, 0.18);
+}
+
+.auto-complete input {
+  width: 50%;
+  border: none;
+}
+
+.auto-complete ul {
+  list-style-type: none;
   text-align: center;
+}
+
+button {
+  font: inherit;
+  background: #4292fc;
+  padding: 0.5rem 2rem;
+  color: white;
+  border: 1px solid #4292fc;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+button:focus {
+  outline: none;
+}
+
+.find-trip-info-btn {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 footer {

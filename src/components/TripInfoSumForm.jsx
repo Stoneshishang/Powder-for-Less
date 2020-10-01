@@ -183,20 +183,13 @@ const TripInfoSum = () => {
       return [...prevData, gatherSumTableData];
     });
 
-    // prevSumTable.current = sumTableData;
-
     // console.log("sumTableData is: ", sumTableData);
   }, [bothData]);
-
-  // console.log("prevSumTable.current is: ", prevSumTable.current);
-
-  // console.log("prevSumTable is: ", prevSumTable.current);
 
   // handler used to trigger api fetch with necessary data
 
   const conditionalRenderTable = () => {
     setLoading(true);
-    console.log("Spinner loading is: ", loading);
     setCountButtonClick(countButtonClick + 1);
     console.log(
       `*************************clicked on it ${countButtonClick} times ********************************* `,
@@ -253,24 +246,10 @@ const TripInfoSum = () => {
 
   return (
     <div>
-      <button onClick={conditionalRenderTable}>Find Trips!</button>
+      <button className="find-trip-btn" onClick={conditionalRenderTable}>
+        Find Trips!
+      </button>
       {buttonClick === true && <CollapsibleSumTable isLoading={loading} />}
-      {console.log("Spinner loading in JSX is: ", loading)}
-
-      {/* {(() => {
-        if (buttonClick === true) {
-          if (loading === false) {
-            return <CollapsibleSumTable />;
-          } else {
-            return <Spinner animation="border" />;
-          }
-        }
-      })()} */}
-      {/* {buttonClick && !loading ? (
-        <CollapsibleSumTable />
-      ) : (
-        <Spinner animation="border" />
-      )} */}
     </div>
   );
 };

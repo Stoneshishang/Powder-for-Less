@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../ContextState";
-import "./AutoComplete.css";
+// import "./AutoComplete.css";
 
 //This feature is converted from class components to Hooks based on below videos
 // https://www.youtube.com/watch?v=2sBDf8xbKEY&list=PL87K_SqEjuYA45pWf3EZkj4getpNacJds&index=3
@@ -45,16 +45,16 @@ const AutoComplete = ({ items }) => {
   };
 
   return (
-    <div className="auto-complete">
+    <>
+      <label>Home Airport: </label>
       <input
         value={text}
         onChange={handleTextChange}
         placeholder="Home Airport"
         type="text"
-        required="required"
       />
       <Suggestions {...{ suggestions, handleSelectSuggestion }} />
-    </div>
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ const NumOfPeople = () => {
   return (
     <Context.Consumer>
       {({ num, setNum }) => (
-        <div className="passenger-number">
+        <div className="num-people">
           <label htmlFor="num-people">Number of People:</label>
           <input
             name="numPeople"
