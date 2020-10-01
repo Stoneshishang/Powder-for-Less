@@ -3,6 +3,7 @@ import CollapsibleSumTable from "./CollapsibleSumTable";
 import { Context } from "../../ContextState";
 import _ from "lodash";
 import moment from "moment";
+import "./TripInfoSumForm.css";
 
 // import LaterButtonClickTable from "./LaterButtonClickTable";
 
@@ -253,7 +254,9 @@ const TripInfoSum = () => {
 
   return (
     <div>
-      <button onClick={conditionalRenderTable}>Find Trips!</button>
+      <button className="find-trip-btn" onClick={conditionalRenderTable}>
+        Find Trips!
+      </button>
       {buttonClick === true && <CollapsibleSumTable isLoading={loading} />}
       {console.log("Spinner loading in JSX is: ", loading)}
     </div>

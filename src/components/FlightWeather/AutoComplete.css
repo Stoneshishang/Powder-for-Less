@@ -1,11 +1,12 @@
 .auto-complete {
   width: 50%;
   border: 1px solid grey;
+  text-align: center;
   /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2 4 1 rgba(0, 0, 0, 0.18); */
 }
 
 .auto-complete input {
-  width: 50%;
+  width: 100%;
   border: none;
 }
 

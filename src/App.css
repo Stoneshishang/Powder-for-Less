@@ -1,28 +1,25 @@
-.nav-bar h1 {
-  font-style: italic;
-  font-family: "Montserrat", sans-serif;
-  background-color: #1348f583;
-  margin: -8px -8px;
-  padding: 16px 32px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
 }
 
-.dates {
-  text-align: center;
-}
-.find-trip-info-btn {
-  text-align: center;
-}
-
-footer {
-  position: absolute;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
+button {
+  font: inherit;
+  background: #20a6ff;
+  padding: 0.5rem 2rem;
+  color: white;
+  border: 1px solid #20a6ff;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-footer p {
-  color: rgb(53, 53, 53);
-  font-family: "Montserrat", sans-serif;
+button:hover,
+button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+button:focus {
+  outline: none;
 }
