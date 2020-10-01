@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import CollapsibleSumTable from "./CollapsibleSumTable";
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 import _ from "lodash";
 import moment from "moment";
+import "./TripInfoSumForm.css";
 
 // import LaterButtonClickTable from "./LaterButtonClickTable";
 
@@ -250,6 +251,10 @@ const TripInfoSum = () => {
         Find Trips!
       </button>
       {buttonClick === true && <CollapsibleSumTable isLoading={loading} />}
+<<<<<<< HEAD:src/components/TripInfoSumForm.jsx
+=======
+      {console.log("Spinner loading in JSX is: ", loading)}
+>>>>>>> css:src/components/FlightWeather/TripInfoSumForm.jsx
     </div>
   );
 };

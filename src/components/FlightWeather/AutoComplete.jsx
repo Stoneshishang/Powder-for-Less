@@ -1,6 +1,11 @@
 import React, { useState, useContext } from "react";
+<<<<<<< HEAD:src/components/AutoComplete.jsx
 import { Context } from "../ContextState";
 // import "./AutoComplete.css";
+=======
+import { Context } from "../../ContextState";
+import "./AutoComplete.css";
+>>>>>>> css:src/components/FlightWeather/AutoComplete.jsx
 
 //This feature is converted from class components to Hooks based on below videos
 // https://www.youtube.com/watch?v=2sBDf8xbKEY&list=PL87K_SqEjuYA45pWf3EZkj4getpNacJds&index=3

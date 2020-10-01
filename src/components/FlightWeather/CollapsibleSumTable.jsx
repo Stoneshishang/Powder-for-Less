@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
-import { Context } from "../ContextState";
+import { Context } from "../../ContextState";
 
 const CollapsibleSumTable = (props) => {
   const { sumTableData, setLoading } = useContext(Context);
