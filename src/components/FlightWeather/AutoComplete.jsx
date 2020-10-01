@@ -45,15 +45,18 @@ const AutoComplete = ({ items }) => {
   };
 
   return (
-    <div className="auto-complete">
-      <input
-        value={text}
-        onChange={handleTextChange}
-        placeholder="Home Airport"
-        type="text"
-      />
-      <Suggestions {...{ suggestions, handleSelectSuggestion }} />
-    </div>
+    <>
+      <label>Home Airport:</label>
+      <div className="auto-complete">
+        <input
+          value={text}
+          onChange={handleTextChange}
+          placeholder="Home Airport"
+          type="text"
+        />
+        <Suggestions {...{ suggestions, handleSelectSuggestion }} />
+      </div>
+    </>
   );
 };
 
