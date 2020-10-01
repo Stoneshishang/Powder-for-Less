@@ -16,11 +16,6 @@ const App = () => {
       <div>
         <Header />
         <ResortsSelection />
-<<<<<<< HEAD
-
-=======
-        <label>Home Airport:</label>
->>>>>>> css
         <AutoComplete name="autocomplete-airport" items={airports} />
         <NumOfPeople />
         <Dates />

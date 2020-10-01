@@ -251,10 +251,7 @@ const TripInfoSum = () => {
         Find Trips!
       </button>
       {buttonClick === true && <CollapsibleSumTable isLoading={loading} />}
-<<<<<<< HEAD:src/components/TripInfoSumForm.jsx
-=======
       {console.log("Spinner loading in JSX is: ", loading)}
->>>>>>> css:src/components/FlightWeather/TripInfoSumForm.jsx
     </div>
   );
 };
