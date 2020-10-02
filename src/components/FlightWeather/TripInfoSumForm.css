@@ -1,3 +1,5 @@
 .find-trip-btn {
-  margin: auto 0 auto;
+  display: block;
+  margin: 0 auto;
+  width: 150px;
 }

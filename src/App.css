@@ -2,6 +2,9 @@ html,
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
+  background-image: url("https://i0.wp.com/www.powder.com/wp-content/uploads/2018/01/Schirf_DSC_8487.jpg?w=1860&ssl=1");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 button {

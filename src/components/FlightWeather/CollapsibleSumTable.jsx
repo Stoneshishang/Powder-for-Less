@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import { Context } from "../../ContextState";
+import "./CollapsibleSumTable.css";
 
 const CollapsibleSumTable = (props) => {
   const { sumTableData, setLoading } = useContext(Context);
@@ -137,7 +138,9 @@ const CollapsibleSumTable = (props) => {
 
   return (
     <div>
-      {props.isLoading && <Spinner animation="border" />}
+      {props.isLoading && (
+        <Spinner animation="border" variant="primary" className="spinner" />
+      )}
       <Table striped bordered hover>
         <thead>
           <tr>
