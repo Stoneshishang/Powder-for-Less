@@ -16,7 +16,8 @@ const App = () => {
       <div>
         <Header />
         <ResortsSelection />
-        <AutoComplete name="autocomplete-airport" items={airports} />
+
+        <AutoComplete items={airports} />
         <NumOfPeople />
         <Dates />
         <TripInfoSumForm />
