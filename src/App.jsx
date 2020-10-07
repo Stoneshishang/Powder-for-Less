@@ -9,14 +9,19 @@ import AutoComplete from "./components/FlightWeather/AutoComplete";
 import airports from "./apis/airports";
 import TripInfoSumForm from "./components/FlightWeather/TripInfoSumForm";
 import { InfoProvider } from "./ContextState";
+import LoginButton from "./components/Authentication/LoginButton";
+import LogoutButton from "./components/Authentication/LogoutButton";
+import Profile from "./components/Authentication/profile";
 
 const App = () => {
   return (
     <InfoProvider>
       <div>
         <Header />
+        <LoginButton />
+        <LogoutButton />
+        <Profile />
         <ResortsSelection />
-
         <AutoComplete items={airports} />
         <NumOfPeople />
         <Dates />
