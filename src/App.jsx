@@ -17,8 +17,11 @@ const App = () => {
   return (
     <InfoProvider>
       <div>
-        <Header />
-        <LoginButton />
+        <div className="header-login-container">
+          <Header />
+          <LoginButton className="login-btn-position" />
+        </div>
+
         <LogoutButton />
         <Profile />
         <ResortsSelection />

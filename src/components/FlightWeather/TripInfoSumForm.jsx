@@ -103,12 +103,6 @@ const TripInfoSum = () => {
 
       // console.log("detialTableDataArr is: ", detailWeatherDataArr);
 
-      // console.log(
-      //   `departureDate is ${JSON.stringify(
-      //     departureDate,
-      //   )}, returnDate is ${JSON.stringify(returnDate)}`,
-      // );
-
       const departureDateString = JSON.stringify(departureDate);
 
       const returnDateString = JSON.stringify(returnDate);
@@ -143,13 +137,46 @@ const TripInfoSum = () => {
     }
 
     const flight = bothData.flight;
+
     let direct = [];
     let minPrice = [];
+    let minFlightID = 0;
+    let carriersList = [];
+    let minAirline = "";
+    let minAirlineName = "";
     if (flight !== null) {
       const { Quotes } = flight.data;
       direct = Quotes.map((x) => x.Direct);
       minPrice = Quotes.map((x) => x.MinPrice);
-      // console.log("Quotes is: ", Quotes);
+
+      console.log("full flight info is: ", flight.data);
+      console.log("flight Quotes are: ", Quotes);
+
+      carriersList = flight.data.Carriers;
+
+      console.log("carriersList is: ", carriersList);
+
+      minFlightID = Number(Quotes.map((x) => x.OutboundLeg.CarrierIds[0]));
+
+      const findCarrierByID = (id) => {
+        return carriersList.filter((carriersList) => {
+          return carriersList.CarrierId === id;
+        });
+      };
+
+      minAirline = findCarrierByID(minFlightID);
+
+      console.log("minAirline is: ", minAirline);
+
+      if (minAirline.length === 0) {
+        minAirlineName = "No Flight Available";
+        console.log("1.minAirlineName is: ", minAirlineName);
+      } else {
+        minAirlineName = minAirline[0].Name;
+        console.log("2.minAirlineName is: ", minAirlineName);
+      }
+
+      console.log("CarrierIds in Minprice is", minFlightID);
     }
 
     //merge two array into an object.
