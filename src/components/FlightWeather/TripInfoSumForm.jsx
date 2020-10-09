@@ -158,6 +158,7 @@ const TripInfoSum = () => {
 
       minFlightID = Number(Quotes.map((x) => x.OutboundLeg.CarrierIds[0]));
 
+      //find the Airline names by its carrierID
       const findCarrierByID = (id) => {
         return carriersList.filter((carriersList) => {
           return carriersList.CarrierId === id;
@@ -170,21 +171,22 @@ const TripInfoSum = () => {
 
       if (minAirline.length === 0) {
         minAirlineName = "No Flight Available";
-        console.log("1.minAirlineName is: ", minAirlineName);
+        // console.log("1.minAirlineName is: ", minAirlineName);
       } else {
         minAirlineName = minAirline[0].Name;
-        console.log("2.minAirlineName is: ", minAirlineName);
+        // console.log("2.minAirlineName is: ", minAirlineName);
       }
 
-      console.log("CarrierIds in Minprice is", minFlightID);
+      // console.log("CarrierIds in Minprice is", minFlightID);
     }
 
-    console.log("minPrice is: ", minPrice);
+    // console.log("minPrice is: ", minPrice);
 
     //merge two array into an object.
     const flightRoute = {};
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
 
+    //add key/value pair into object.
     flightRoute["Airline"] = minAirlineName;
 
     console.log(flightRoute);
@@ -221,7 +223,6 @@ const TripInfoSum = () => {
   }, [bothData]);
 
   // handler used to trigger api fetch with necessary data
-
   const conditionalRenderTable = () => {
     setLoading(true);
     setCountButtonClick(countButtonClick + 1);
