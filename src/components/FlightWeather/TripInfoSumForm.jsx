@@ -179,9 +179,15 @@ const TripInfoSum = () => {
       console.log("CarrierIds in Minprice is", minFlightID);
     }
 
+    console.log("minPrice is: ", minPrice);
+
     //merge two array into an object.
     const flightRoute = {};
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
+
+    flightRoute["Airline"] = minAirlineName;
+
+    console.log(flightRoute);
 
     gatherSumTableData = {
       resort: resortID,
