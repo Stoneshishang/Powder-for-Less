@@ -32,7 +32,7 @@ const UserInfoForm = () => {
   };
 
   return (
-    !isAuthenticated && (
+    isAuthenticated && (
       <Card>
         <form onSubmit={submitHandler}>
           <h1>Please enter your information</h1>
