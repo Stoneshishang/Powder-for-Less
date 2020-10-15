@@ -12,6 +12,8 @@ import { InfoProvider } from "./ContextState";
 import LoginButton from "./components/Authentication/LoginButton";
 import LogoutButton from "./components/Authentication/LogoutButton";
 import Profile from "./components/Authentication/profile";
+import UserInfoForm from "./components/UserInfo/UserInfoForm";
+import UserInfoDisplay from "./components/UserInfo/UserInfoDisplay";
 
 const App = () => {
   return (
@@ -21,9 +23,11 @@ const App = () => {
           <Header />
           <LoginButton className="login-btn-position" />
         </div>
-
         <LogoutButton />
-        <Profile />
+        <UserInfoForm />
+        <UserInfoDisplay />
+
+        {/* <Profile /> */}
         <ResortsSelection />
         <AutoComplete items={airports} />
         <NumOfPeople />

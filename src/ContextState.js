@@ -36,6 +36,15 @@ const defaultState = {
 
   error: {},
   setError: () => {},
+
+  enteredPass: {},
+  setEnteredPass: () => {},
+
+  sportsType: {},
+  setSportsType: () => {},
+
+  userInfo: {},
+  setUserInfo: () => {},
 };
 
 export const Context = createContext(defaultState);
@@ -59,6 +68,10 @@ export const InfoProvider = ({ children }) => {
   const [detailTableData, setDetailTableData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
+
+  const [enteredPass, setEnteredPass] = useState("");
+  const [sportsType, setSportsType] = useState("");
+  const [userInfo, setUserInfo] = useState([]);
 
   // fetchBothData is where the Data is actually fetched and set to the Context.
   const fetchBothData = async (args) => {
@@ -104,6 +117,15 @@ export const InfoProvider = ({ children }) => {
 
     error,
     setError,
+
+    enteredPass,
+    setEnteredPass,
+
+    sportsType,
+    setSportsType,
+
+    userInfo,
+    setUserInfo,
   };
 
   // {value} is object property value shorthand.
