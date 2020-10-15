@@ -246,6 +246,8 @@ const TripInfoSum = () => {
       ]);
       console.log("conditionalRenderTable SumTableData is: ", sumTableData);
 
+      setDetailTableData([]);
+
       handleFetchData();
     }
   };
