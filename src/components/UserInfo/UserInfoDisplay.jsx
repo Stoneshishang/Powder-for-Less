@@ -12,11 +12,11 @@ const UserInfoDisplay = () => {
 
   return (
     isAuthenticated && (
-      <Card>
+      // <Card>
+      <div>
         <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>
-        {/* <h2></h2> */}
-      </Card>
+      </div>
     )
   );
 };

@@ -33,30 +33,30 @@ const UserInfoForm = () => {
 
   return (
     isAuthenticated && (
-      <Card>
-        <form onSubmit={submitHandler}>
-          <h1>Please enter your information</h1>
-          <label htmlFor="pass-type">Season Pass Type</label>
-          <input
-            type="text"
-            id="pass-type"
-            value={enteredPass}
-            onChange={(e) => {
-              setEnteredPass(e.target.value);
-            }}
-          />
-          <label htmlFor="ski-snowboard">Sports Type</label>
-          <input
-            type="text"
-            id="ski-snowboard"
-            value={sportsType}
-            onChange={(e) => {
-              setSportsType(e.target.value);
-            }}
-          />
-          <button type="submit">Add Your Info</button>
-        </form>
-      </Card>
+      // <Card>
+      <form onSubmit={submitHandler}>
+        <h1>Please enter your information</h1>
+        <label htmlFor="pass-type">Season Pass Type: </label>
+        <input
+          type="text"
+          id="pass-type"
+          value={enteredPass}
+          onChange={(e) => {
+            setEnteredPass(e.target.value);
+          }}
+        />
+        <label htmlFor="ski-snowboard">Sports Type: </label>
+        <input
+          type="text"
+          id="ski-snowboard"
+          value={sportsType}
+          onChange={(e) => {
+            setSportsType(e.target.value);
+          }}
+        />
+        <button type="submit">Add Your Info</button>
+      </form>
+      // </Card>
     )
   );
 };
