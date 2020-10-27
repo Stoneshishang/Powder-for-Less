@@ -1,8 +1,7 @@
-1. when user add resorts in the table. only populate the added resort without previously rendered result.
-2. populate "Drive is better" when user selected resorts are within driving distance. which is originplace===destinationplace.
-3. display airlines behind min price
+1. Disable the past date with React Date Picker, https://www.cluemediator.com/how-to-disable-the-past-and-future-dates-in-react-datetime#dtpd
+2. when user add resorts in the table. only populate the added resort without previously rendered result.
+3. populate "Drive is better" when user selected resorts are within driving distance. which is originplace===destinationplace.
+
 4. checkboxes for filtering direct/indirect
 5. add airline selections from the API response.
 
-
-CSS: add spinners while loading.
