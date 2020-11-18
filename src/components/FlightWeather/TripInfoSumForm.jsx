@@ -146,7 +146,9 @@ const TripInfoSum = () => {
     if (flight !== null) {
       const { Quotes } = flight.data;
       direct = Quotes.map((x) => x.Direct);
+      console.log('direct is: ', direct);
       minPrice = Quotes.map((x) => x.MinPrice);
+      console.log('min price is: ', minPrice);
 
 
       console.log("full flight info is: ", flight.data);
@@ -162,18 +164,21 @@ const TripInfoSum = () => {
       minAirline = minFlightIDs.map((minFlightID) =>
         flight.data.Carriers.filter(x => x.CarrierId === minFlightID)[0].Name);
 
+      console.log('flight.data.Carriers is: ', flight.data.Carriers);
       console.log("minAirline is: ", minAirline);
-
     }
-
-    // console.log("minPrice is: ", minPrice);
-
     //merge two array into an object.
     const flightRoute = {};
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
 
     //add key/value pair into object.
-    flightRoute["Airline"] = minAirline;
+
+    if(direct[0] ===false ){
+      flightRoute["Airline"] = minAirline[0];
+    }else if(direct[1] ===true){
+      flightRoute["Airline"] = minAirline[1];
+    }
+    
 
     console.log(flightRoute);
 
