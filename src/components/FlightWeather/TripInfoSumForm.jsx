@@ -143,7 +143,6 @@ const TripInfoSum = () => {
     let minFlightIDs = [];
     let carriersList = [];
     let minAirline = [];
-    let minAirlineName = "";
     if (flight !== null) {
       const { Quotes } = flight.data;
       direct = Quotes.map((x) => x.Direct);
@@ -174,7 +173,7 @@ const TripInfoSum = () => {
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
 
     //add key/value pair into object.
-    flightRoute["Airline"] = minAirlineName;
+    flightRoute["Airline"] = minAirline;
 
     console.log(flightRoute);
 
