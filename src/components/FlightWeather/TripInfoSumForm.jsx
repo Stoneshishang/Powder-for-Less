@@ -165,6 +165,8 @@ const TripInfoSum = () => {
     const flightRoute = {};
     direct.forEach((d, p) => (flightRoute[d] = minPrice[p]));
 
+    console.log(flightRoute);
+
     //add key/value pair into object.
 
     if(flight !== null){
