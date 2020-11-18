@@ -105,7 +105,7 @@ const CollapsibleSumTable = (props) => {
         <tbody>
           <tr>
             <td>
-              Direct: {flightRoute.true} -- {flightRoute.false.airline}
+              Direct: {flightRoute.true.price} -- {flightRoute.true.airline}
             </td>
           </tr>
         </tbody>
@@ -118,7 +118,7 @@ const CollapsibleSumTable = (props) => {
         <tbody>
           <tr>
             <td>
-              Indirect: {flightRoute.false} -- {flightRoute.true.airline}
+              Indirect: {flightRoute.false.price} -- {flightRoute.false.airline}
             </td>
           </tr>
         </tbody>
