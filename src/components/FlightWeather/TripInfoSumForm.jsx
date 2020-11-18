@@ -140,10 +140,11 @@ const TripInfoSum = () => {
 
     let direct = [];
     let minPrice = [];
-    let minFlightID = [];
+    let minFlightIDs = [];
     let minAirlineID = 0;
     let carriersList = [];
     let minAirline = "";
+    let minAirlines = [];
     let minAirlineName = "";
     if (flight !== null) {
       const { Quotes } = flight.data;
@@ -158,8 +159,13 @@ const TripInfoSum = () => {
 
       console.log("carriersList is: ", carriersList);
 
-      minFlightID = Quotes.map((x) => Number(x.OutboundLeg.CarrierIds));
-      console.log('minFlightID is: ', minFlightID);
+      minFlightIDs = Quotes.map((x) => Number(x.OutboundLeg.CarrierIds));
+      console.log('minFlightID is: ', minFlightIDs);
+
+      minAirlines = minFlightIDs.map((minFlightID) =>
+        flight.data.Carriers.filter(x => x.CarrierId === minFlightID)[0].Name);
+
+      console.log(minAirlines);
 
       //find the Airline names by its carrierID
       const findCarrierByID = (id) => {
@@ -167,18 +173,18 @@ const TripInfoSum = () => {
 
           minAirlineID = carriersList.CarrierId
 
-          minAirlineName = flight.data.Carriers.map(x =>{
-            if (x.CarrierId===minAirlineID)
-            return x.Name;
+          minAirlineName = flight.data.Carriers.map(x => {
+            if (x.CarrierId === minAirlineID)
+              return x.Name;
           })
 
           console.log('minAirlineID is: ', minAirlineID);
-          console.log('min Airline Name is:',minAirlineName);
+          console.log('min Airline Name is:', minAirlineName);
           return carriersList.CarrierId === id;
         });
       };
 
-      minAirline = findCarrierByID(minFlightID);
+      minAirline = findCarrierByID(minFlightIDs);
 
       console.log("minAirline is: ", minAirline);
 
