@@ -37,11 +37,6 @@ const CollapsibleSumTable = (props) => {
 
     setLoading(false);
 
-    // console.log(
-    //   "selectedResortInDetailedTableData.date is: ",
-    //   selectedResortInDetailedTableData.date,
-    // );
-
     // console.log("data in renderTable is: ", data);
     return (
       <React.Fragment key={data.resort}>

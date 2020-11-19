@@ -172,8 +172,10 @@ const TripInfoSum = () => {
     }
 
     if(flight !== null){
-      flightRoute["trueAirline"] = flight.data.Carriers.filter(x => x.CarrierId === flightRoute.true);
-      flightRoute["falseAirline"] = flight.data.Carriers.filter(x => x.CarrierId === flightRoute.false);
+      flightRoute["trueAirline"] = flight.data.Carriers.filter(x =>
+         x.CarrierId === flightRoute.true);
+      flightRoute["falseAirline"] = flight.data.Carriers.filter(x => 
+        x.CarrierId === flightRoute.false);
   
     }
    

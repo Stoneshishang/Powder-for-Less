@@ -26,7 +26,6 @@ const App = () => {
         <LogoutButton />
         <UserInfoForm />
         <UserInfoDisplay />
-
         {/* <Profile /> */}
         <ResortsSelection />
         <AutoComplete items={airports} />
