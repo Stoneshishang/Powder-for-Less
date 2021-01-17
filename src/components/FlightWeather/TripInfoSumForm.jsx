@@ -29,7 +29,7 @@ const TripInfoSum = () => {
   const [buttonClick, setButtonClick] = useState(false);
 
   const chosenResortsObjArr = selectedMW.concat(selectedRockies);
-  // console.log("   choseResortsObjArr is: ", chosenResortsObjArr);
+  console.log("   choseResortsObjArr is: ", chosenResortsObjArr);
 
   //fetch weather data base on the resorts' cordinates.
   const chosenResortsCordsArr = selectedMW
@@ -131,6 +131,8 @@ const TripInfoSum = () => {
         return _.round(obj.value.lat, 2) === weatherLocationInfo;
       });
 
+      console.log("resortIDObj is: ", resortIDObj);
+
       resortID = resortIDObj.map((id) => id.label);
       resortID = resortID[0];
       console.log("resortID is: ", resortID);
@@ -147,20 +149,20 @@ const TripInfoSum = () => {
     if (flight !== null) {
       const { Quotes } = flight.data;
       direct = Quotes.map((x) => x.Direct);
-      console.log('direct is: ', direct);
+      // console.log('direct is: ', direct);
       minPrice = Quotes.map((x) => x.MinPrice);
-      console.log('min price is: ', minPrice);
+      // console.log('min price is: ', minPrice);
 
 
-      console.log("full flight info is: ", flight.data);
-      console.log("flight Quotes are: ", Quotes);
+      // console.log("full flight info is: ", flight.data);
+      // console.log("flight Quotes are: ", Quotes);
 
       carriersList = flight.data.Carriers;
 
-      console.log("carriersList is: ", carriersList);
+      // console.log("carriersList is: ", carriersList);
 
       minFlightIDs = Quotes.map((x) => Number(x.OutboundLeg.CarrierIds));
-      console.log('minFlightIDs is: ', minFlightIDs);
+      // console.log('minFlightIDs is: ', minFlightIDs);
       //merge two array into an object.
 
       minAirlines = minFlightIDs.map((minFlightID) =>
@@ -179,7 +181,7 @@ const TripInfoSum = () => {
   
     }
    
-    console.log(flightRoute);
+    // console.log(flightRoute);
 
     gatherSumTableData = {
       resort: resortID,
@@ -197,7 +199,7 @@ const TripInfoSum = () => {
       weather: detailWeatherDataArr,
     };
 
-    console.log("gatherDetailTableData is: ", gatherDetailTableData);
+    // console.log("gatherDetailTableData is: ", gatherDetailTableData);
 
     setDetailTableData((prevData) => {
       return [...prevData, gatherDetailTableData];
@@ -234,7 +236,7 @@ const TripInfoSum = () => {
           flight: {},
         },
       ]);
-      console.log("conditionalRenderTable SumTableData is: ", sumTableData);
+      // console.log("conditionalRenderTable SumTableData is: ", sumTableData);
 
       setDetailTableData([]);
 

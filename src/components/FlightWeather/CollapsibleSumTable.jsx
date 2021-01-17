@@ -8,6 +8,8 @@ const CollapsibleSumTable = (props) => {
   const { sumTableData, setLoading } = useContext(Context);
   const { detailTableData, setDetailTableData } = useContext(Context);
 
+  console.log("sumTableData is: ", sumTableData);
+
   const slicedData = sumTableData.slice(2, sumTableData.length);
 
   let selectedResortInDetailedTableData;
