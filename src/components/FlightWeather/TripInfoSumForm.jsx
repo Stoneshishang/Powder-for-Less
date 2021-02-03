@@ -128,6 +128,9 @@ const TripInfoSum = () => {
 
       //Match response Data with corresponding resort
       const resortIDObj = chosenResortsObjArr.filter((obj) => {
+
+        console.log('loadash weather location info is: ', _.round(obj.value.lat, 2));
+        console.log('weatherLocationInfo is: ', weatherLocationInfo);
         return _.round(obj.value.lat, 2) === weatherLocationInfo;
       });
 
