@@ -50,7 +50,10 @@ const CollapsibleSumTable = (props) => {
             <table>{renderFlightRouteInfo(data.flight)}</table>
           </td>
           <td>
-            <button onClick={() => renderDetailTable(data.resort)}>
+            <button
+              className="detail-button"
+              onClick={() => renderDetailTable(data.resort)}
+            >
               view detailed weather
             </button>
           </td>
