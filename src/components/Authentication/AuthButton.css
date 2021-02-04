@@ -1,7 +1,23 @@
 .login-btn {
   float: right;
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  box-shadow: 0px 15px 20px rgba(1, 13, 70, 0.4);
+}
+
+.login-btn:hover {
+  background-color: rgb(40, 91, 201);
 }
 
 .logout-btn {
   float: right;
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  box-shadow: 0px 15px 20px rgba(1, 13, 70, 0.4);
+}
+
+.logout-btn {
+  background-color: rgb(40, 91, 201);
 }

@@ -9,7 +9,7 @@ const Dates = () => {
       <Context.Consumer>
         {({ departureDate, setDepartureDate }) => (
           <div>
-            <label htmlFor="departure-date">Departure Date:</label>
+            <label className="departure-date">Departure Date:</label>
             <input
               type="date"
               name="departure-date"
@@ -24,7 +24,7 @@ const Dates = () => {
       <Context.Consumer>
         {({ returnDate, setReturnDate }) => (
           <div>
-            <label htmlFor="return-date">Return Date:</label>
+            <label className="return-date">Return Date:</label>
             <input
               type="date"
               name="return-date"

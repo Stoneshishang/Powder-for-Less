@@ -1,11 +1,14 @@
 .resortList {
+  width: 100%;
+  height: 400px;
   display: flex;
-  flex-direction: row;
-  margin: 10rem;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.resortList .rockies {
-  margin-right: 1rem;
-  margin-left: 1rem;
-  margin: auto;
+.resortList > .midwest > div.multi-select,
+.resortList > .rockies > div.multi-select,
+.resortList > .sierra > div.multi-select {
+  width: 200px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
 }

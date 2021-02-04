@@ -8,7 +8,7 @@ const NumOfPeople = () => {
     <Context.Consumer>
       {({ num, setNum }) => (
         <div className="num-of-people">
-          <label htmlFor="num-people">Number of People:</label>
+          <label className="num-people">Number of People:</label>
           <input
             name="numPeople"
             value={num}
